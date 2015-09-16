@@ -9,13 +9,14 @@ splat.AppRouter = Backbone.Router.extend({
 
     // Map "URL paths" to "router functions"
     routes: {
-        "": "home"
+        "": "home",
+        "default": "home"
     },
 
     // When an instance of an AppRouter is declared, create a Header view
     initialize: function() {
 	// instantiate a Header view
-        this.headerView = new splat.Header();  
+        this.headerView = new splat.Header();
 	// insert the rendered Header view element into the document DOM
         $('.header').html(this.headerView.render().el);
     },
