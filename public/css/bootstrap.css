@@ -1078,7 +1078,6 @@ th {
 }
 html {
   font-size: 10px;
-
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
@@ -1274,6 +1273,7 @@ h2,
 h3,
 .h3 {
   font-size: 24px;
+  color: white; /* Asra */
 }
 h4,
 .h4 {
@@ -5004,6 +5004,8 @@ a.badge:focus {
   margin-left: 3px;
 }
 .jumbotron {
+  background-image: url(../img/HJ.jpg); /* Asra */
+  height: 1000px; /* Asra */
   padding-top: 30px;
   padding-bottom: 30px;
   margin-bottom: 30px;
@@ -5016,7 +5018,7 @@ a.badge:focus {
 }
 .jumbotron p {
   margin-bottom: 15px;
-  font-size: 21px;
+  font-size: 21px; 
   font-weight: 200;
 }
 .jumbotron > hr {
@@ -5024,7 +5026,7 @@ a.badge:focus {
 }
 .container .jumbotron,
 .container-fluid .jumbotron {
-  border-radius: 6px;
+  border-radius: 0px; /* Asra */
 }
 .jumbotron .container {
   max-width: 100%;
@@ -5033,7 +5035,7 @@ a.badge:focus {
   .jumbotron {
     padding-top: 48px;
     padding-bottom: 48px;
-  }
+	  }
   .container .jumbotron,
   .container-fluid .jumbotron {
     padding-right: 60px;
@@ -5042,6 +5044,7 @@ a.badge:focus {
   .jumbotron h1,
   .jumbotron .h1 {
     font-size: 63px;
+	color: white; /* Asra */
   }
 }
 .thumbnail {
@@ -6797,4 +6800,7 @@ button.close {
     display: none !important;
   }
 }
+
+
+
 /*# sourceMappingURL=bootstrap.css.map */
