@@ -37,6 +37,7 @@ splat.AppRouter = Backbone.Router.extend({
         };
 	// insert the rendered Home view element into the document DOM
         $('#content').html(this.aboutView.render().el);
+        selectMenuItem($('.about-menu'));
     }
 
 });
