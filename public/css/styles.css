@@ -1,3 +1,45 @@
+.about-home{
+  background-image: url(../img/blank.png); /* Asra */
+  height: 1000px; /* Asra */
+  width: 100%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  color: inherit;
+  }
+
+  .container .about-home,
+.container-fluid .about-home {
+  border-radius: 0px; /* Asra */
+ 
+}
+.about-home .container {
+  max-width: 100%;
+
+}
+@media screen and (min-width: 768px) {
+  .about-home {
+    padding-top: 48px;
+    padding-bottom: 48px;
+	  }
+  .container .about-home,
+  .container-fluid .about-home {
+    padding-right: 60px;
+    padding-left: 60px;
+  }
+  .about-home h1,
+  .about-home .h1 {
+    font-size: 20px;
+	color: white; /* Asra */
+  }
+  .about-home h3,
+  .about-home .h3 {
+    font-size: 24px;
+	color: white; /* Asra */ 
+  }
+} 
+ 
+  
 .home-hero {
   background-image: url(../img/HJ.jpg); /* Asra */
   height: 1000px; /* Asra */
@@ -6,11 +48,7 @@
   padding-bottom: 30px;
   margin-bottom: 30px;
   color: inherit;
-  background-color: #eee;
-}
-.home-hero h1,
-.home-hero .h1 {
-  color: inherit;
+ 
 }
 .home-hero p {
   margin-bottom: 15px;
@@ -41,7 +79,8 @@
   }
   .home-hero h1,
   .home-hero .h1 {
-    font-size: 63px;
+    font-size: 36px;
+	font-family:Verdana;
 	color: white; /* Asra */
   }
   .home-hero h3,
@@ -51,4 +90,7 @@
   }
 } 
 
+.about-menu{
+	font-size: 125%;
+}
 
