@@ -15,8 +15,10 @@ font-size: 12px;
 
 
 .about-home{
-  background-image: url(../img/blank.png); /* Asra */
-  height: 1000px; /* Asra */
+  background-image: url(../img/blank.png);
+  background-size:   cover;                      /* <------ */
+  background-repeat: no-repeat;
+  height: 1000px;
   width: 100%;
   padding-top: 51px;
   color: inherit;  
@@ -32,8 +34,10 @@ font-size: 12px;
   }
   
 .home-hero {
-  background-image: url(../img/HJ.jpg); /* Asra */
-  height: 1000px; /* Asra */
+  background-image: url(../img/HJ.jpg);
+  background-size:   cover;                      /* <------ */
+  background-repeat: no-repeat;
+  height: 1000px;
   width: 100%;
   color: inherit;
 }
