@@ -17,21 +17,11 @@ font-size: 12px;
   background-image: url(../img/blank.png); /* Asra */
   height: 1000px; /* Asra */
   width: 100%;
-  padding-top: 30px;
-  
+  padding-top: 51px;
   color: inherit;
   }
  
-@media screen and (min-width: 768px) {
-  .about-home {
-    padding-top: 48px;
-    padding-bottom: 48px;
-	  }
-  .container .about-home,
-  .container-fluid .about-home {
-    padding-right: 60px;
-    padding-left: 60px;
-  }
+
   .about-home h1,
   .about-home .h1 {
     font-size: 20px;
@@ -40,27 +30,15 @@ font-size: 12px;
   .about-home .h3 {
     font-size: 24px;
   }
-} 
- 
   
 .home-hero {
   background-image: url(../img/HJ.jpg); /* Asra */
   height: 1000px; /* Asra */
   width: 100%;
-  padding-top: 30px;
+  padding-top: 51px;
   color: inherit;
  
 }
-@media screen and (min-width: 768px) {
-  .home-hero {
-    padding-top: 48px;
-    padding-bottom: 48px;
-	  }
-  .container .home-hero,
-  .container-fluid .home-hero {
-    padding-right: 60px;
-    padding-left: 60px;
-  }
   .home-hero h1,
   .home-hero .h1 {
     font-size: 36px;
@@ -73,8 +51,4 @@ font-size: 12px;
 
 .home-menu {
   font-size: 125%;
-}
-
-.about-menu{
-	font-size: 125%;
 }
