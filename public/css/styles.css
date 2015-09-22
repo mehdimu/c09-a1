@@ -1,22 +1,27 @@
+#content{
+color:white;
+font-family: Verdana;
+text-align: center;
+}
+
+#footer{
+color:grey;
+background-color: black;
+text-align: right;
+font-family: Verdana;
+font-size: 12px;
+}
+
+
 .about-home{
   background-image: url(../img/blank.png); /* Asra */
   height: 1000px; /* Asra */
   width: 100%;
   padding-top: 30px;
-  padding-bottom: 30px;
-  margin-bottom: 30px;
+  
   color: inherit;
   }
-
-  .container .about-home,
-.container-fluid .about-home {
-  border-radius: 0px; /* Asra */
  
-}
-.about-home .container {
-  max-width: 100%;
-
-}
 @media screen and (min-width: 768px) {
   .about-home {
     padding-top: 48px;
@@ -30,12 +35,10 @@
   .about-home h1,
   .about-home .h1 {
     font-size: 20px;
-	color: white; /* Asra */
   }
   .about-home h3,
   .about-home .h3 {
     font-size: 24px;
-	color: white; /* Asra */ 
   }
 } 
  
@@ -45,27 +48,8 @@
   height: 1000px; /* Asra */
   width: 100%;
   padding-top: 30px;
-  padding-bottom: 30px;
-  margin-bottom: 30px;
   color: inherit;
  
-}
-.home-hero p {
-  margin-bottom: 15px;
-  font-size: 21px; 
-  font-weight: 200;
-}
-.home-hero > hr {
-  border-top-color: #d5d5d5;
-}
-.container .home-hero,
-.container-fluid .home-hero {
-  border-radius: 0px; /* Asra */
- 
-}
-.home-hero .container {
-  max-width: 100%;
-
 }
 @media screen and (min-width: 768px) {
   .home-hero {
@@ -80,21 +64,17 @@
   .home-hero h1,
   .home-hero .h1 {
     font-size: 36px;
-	font-family:Verdana;
-	color: white; /* Asra */
   }
   .home-hero h3,
   .home-hero .h3 {
     font-size: 24px;
-	color: white; /* Asra */ 
   }
 } 
-
-.about-menu{
-	font-size: 125%;
-}
 
 .home-menu {
   font-size: 125%;
 }
 
+.about-menu{
+	font-size: 125%;
+}
