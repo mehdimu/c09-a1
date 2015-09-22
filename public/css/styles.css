@@ -2,7 +2,6 @@
 color:white;
 font-family: Verdana;
 text-align: center;
-line-height: 1000px;
 }
 
 #footer{
@@ -20,7 +19,6 @@ font-size: 12px;
   background-repeat: no-repeat;
   height: 1000px;
   width: 100%;
-  padding-top: 51px;
   color: inherit;  
   }
  
