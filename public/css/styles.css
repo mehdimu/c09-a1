@@ -2,6 +2,7 @@
 color:white;
 font-family: Verdana;
 text-align: center;
+line-height: 1000px;
 }
 
 #footer{
@@ -18,10 +19,9 @@ font-size: 12px;
   height: 1000px; /* Asra */
   width: 100%;
   padding-top: 51px;
-  color: inherit;
+  color: inherit;  
   }
  
-
   .about-home h1,
   .about-home .h1 {
     font-size: 20px;
@@ -35,9 +35,7 @@ font-size: 12px;
   background-image: url(../img/HJ.jpg); /* Asra */
   height: 1000px; /* Asra */
   width: 100%;
-  padding-top: 51px;
   color: inherit;
- 
 }
   .home-hero h1,
   .home-hero .h1 {
@@ -52,3 +50,10 @@ font-size: 12px;
 .home-menu {
   font-size: 125%;
 }
+#mytext {
+    position: relative;
+    top: 50%; 
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+}
+
