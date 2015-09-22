@@ -40,10 +40,12 @@ font-size: 12px;
   .home-hero h1,
   .home-hero .h1 {
     font-size: 36px;
+	text-shadow: 1px 1px 1px black;
   }
   .home-hero h3,
   .home-hero .h3 {
     font-size: 24px;
+	text-shadow: 1px 1px 1px black;
   }
 } 
 
