@@ -12,7 +12,7 @@ splat.AppRouter = Backbone.Router.extend({
         "": "home",
         "default": "home",
 		"about": "about",
-		"movies":"movies" /*Im not sure*/
+		"movies":"movies", /*Im not sure*/
 		"movies/add": "movies/add",
 		"movies/:id":"movies/:id"
     },
@@ -43,13 +43,19 @@ splat.AppRouter = Backbone.Router.extend({
         $('#content').html(this.aboutView.render().el);
         selectMenuItem($('.about-menu'));
     },
+    movies: function() {
+        if (!this.moviesView) {
+            this.moviesView = new splat.Movies();
+        };
+        $('#content').html(this.moviesView.render().el);
+    }
 
 });
 
 // Load HTML templates for Home, Header, About views, and when
 // template loading is complete, instantiate a Backbone router
 // with history.
-splat.utils.loadTemplates(['Home', 'Header', 'About'], function() {
+splat.utils.loadTemplates(['Home', 'Header', 'About', 'Movies'], function() {
     splat.app = new splat.AppRouter();
     Backbone.history.start();
 });

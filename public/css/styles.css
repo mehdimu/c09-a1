@@ -63,7 +63,10 @@ font-size: 12px;
     transform: translateY(-50%);
     -webkit-transform: translateY(-50%);
 }
-
+.movies-home {
+  padding-top: 50px;
+  color: red;
+}
 
 /*the "color" of the buttons to make the text visible.
  vertically align your button-text in the center of the button, */
