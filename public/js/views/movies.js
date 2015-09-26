@@ -5,7 +5,7 @@
 var splat =  splat || {};
 
 // note View-name (About) matches name of template file About.html
-splat.Movies = Backbone.View.extend({
+splat.MovieThumb = Backbone.View.extend({
 
     // render the View
     render: function () {
