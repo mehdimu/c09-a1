@@ -6,11 +6,16 @@ var splat =  splat || {};
 
 
 splat.Movies = Backbone.Collection.extend({
-	
-	model: splat.Movie,
-	localStorage: new Backbone.LocalStorage('splat')
+    // identify collectionâ€™s model
+    model: splat.Movie,
+
+    // save movie models in localStorage under "splat" namespace
+    localStorage: new Backbone.LocalStorage('splat')
 });
 
-var MoviesColl = new splat.Movies;
+//var MoviesColl = new splat.Movies;
 
-window.c = MoviesColl;
+//window.c = MoviesColl;
+
+
+
