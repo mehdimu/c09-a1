@@ -11,7 +11,13 @@ text-align: right;
 font-family: Verdana;
 font-size: 12px;
 }
-
+.row{
+width: 1366px;
+padding-top:30px;
+background-image: url(../img/blank.png);
+  background-size:   cover;                      /* <------ */
+  background-repeat: no-repeat;
+}
 .about-home{
   padding-top:50px;
   background-image: url(../img/blank.png);

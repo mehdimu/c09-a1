@@ -70,6 +70,7 @@ splat.AppRouter = Backbone.Router.extend({
         };
     // insert the rendered Home view element into the document DOM
         $('#content').html(this.detailsView.render().el);
+		selectMenuItem($('.add-menu')); 
     }
 
 
