@@ -19,28 +19,30 @@ splat.AppRouter = Backbone.Router.extend({
 
     // When an instance of an AppRouter is declared, create a Header view
     initialize: function() {
-	// instantiate a Header view
+        // instantiate a Header view
         this.headerView = new splat.Header();
-	// insert the rendered Header view element into the document DOM
+        // insert the rendered Header view element into the document DOM
         $('.header').html(this.headerView.render().el);
+        this.movies = new splat.Movies();
+        this.movies.fetch();
     },
 
     home: function() {
-	// If the Home view doesn't exist, instantiate one
+        // If the Home view doesn't exist, instantiate one
         if (!this.homeView) {
             this.homeView = new splat.Home();
         };
-	// insert the rendered Home view element into the document DOM
+        // insert the rendered Home view element into the document DOM
         $('#content').html(this.homeView.render().el);
         selectMenuItem($('.home-menu'));
 		
     },
 	about: function() {
-	// If the About view doesn't exist, instantiate one
+        // If the About view doesn't exist, instantiate one
         if (!this.aboutView) {
             this.aboutView = new splat.About();
         };
-	// insert the rendered Home view element into the document DOM
+        // insert the rendered Home view element into the document DOM
         $('#content').html(this.aboutView.render().el);
         selectMenuItem($('.about-menu'));
     },
@@ -53,7 +55,7 @@ splat.AppRouter = Backbone.Router.extend({
         $('#content').html(this.detailsView.render().el);
 
         $('#title').attr("placeholder","balh");
-    // insert the rendered Home view element into the document DOM
+            // insert the rendered Home view element into the document DOM
         }
         else { 
          if (!this.moviesView) {
