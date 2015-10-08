@@ -11,6 +11,10 @@ text-align: right;
 font-family: Verdana;
 font-size: 12px;
 }
+textarea {
+   resize: none;
+   margin-bottom: 10px;
+}
 .row{
 width: 1366px;
 padding-top:30px;
