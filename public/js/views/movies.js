@@ -21,6 +21,6 @@ splat.MovieThumb = Backbone.View.extend({
 		// movies collection and the template function you just created.
 		this.$el.html(this.template());
 		return this;    // support method chaining
-    }
+    })
 
-});
+}});

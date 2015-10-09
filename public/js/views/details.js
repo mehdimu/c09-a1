@@ -14,8 +14,8 @@ splat.Details = Backbone.View.extend({
 	return this;    // support method chaining
     },
 	events:{
-	"click #save":  'save',
-	"click #delete": 'destroy',	
+		"click #save":  'save',
+		"click #delete": 'destroy',	
 	},
 	save: function(){
 	//idk
