@@ -16,13 +16,13 @@ textarea {
    resize: none;
    margin-bottom: 10px;
 }
-.row{
-	width: 1349px;
-	padding-top:30px;
+#rowform{
+	width: 1364px; /*1349*/
+	padding-top:60px;
 	background-image: url(../img/blank.png);
 	background-size:   cover;                      /* <------ */
 	background-repeat: no-repeat;
-	padding-bottom:10px;
+	padding-bottom:15px;
 }
 .about-home{
 	padding-top:50px;
