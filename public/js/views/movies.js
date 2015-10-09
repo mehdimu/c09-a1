@@ -12,7 +12,7 @@ splat.MovieThumb = Backbone.View.extend({
     },
     // render the View
     render: function () {
-		this.movieThumbLoad.done(function(markup)) {
+		this.movieThumbLoad.done(function(markup) {
 		//idk
 		// Now "markup" contains the response to the $.get() request.
 		// Turn this markup into a function using Underscore's
