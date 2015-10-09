@@ -6,7 +6,6 @@ var splat =  splat || {};
 
 splat.Movie = Backbone.Model.extend({
 
-
 	defaults: {
 		title: "",
 		released: null,
@@ -23,7 +22,5 @@ splat.Movie = Backbone.Model.extend({
 		dated: new Date()
 	},
 	idAttribute: "_id"
-
-
 
 })

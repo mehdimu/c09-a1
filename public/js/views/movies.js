@@ -5,22 +5,33 @@
 var splat =  splat || {};
 
 // note View-name (About) matches name of template file About.html
-splat.MovieThumb = Backbone.View.extend({
+splat.MovieView = Backbone.View.extend({
 	
     initialize: function() {
         this.movieThumbLoad = $.get('tpl/MovieThumb.html');
     },
+    
+    moviesTemplate: _.template([
+                            "<% movies.each(function(movie) { %>",
+                                "<%= movieTemplate(movie.toJSON()) %>",
+                            "<% }); %>",
+                        ].join('')),
     // render the View
     render: function () {
-		this.movieThumbLoad.done(function(markup) {
-		//idk
+		this.movieThumbLoad.done(
+            function(markup) {
 		// Now "markup" contains the response to the $.get() request.
 		// Turn this markup into a function using Underscore's
 		// template() // function.
 		// Finally apply the moviesTemplate shown below to your
 		// movies collection and the template function you just created.
-		this.$el.html(this.template());
-		return this;    // support method chaining
-    })
+        //		console.log(markup);
+                return markup;
+        //                this.$el.html(this.moviesTemplate());
+        //		return this;    // support method chaining
+        })
+        console.log(this.movieThumbLoad);
+        
+
 
 }});

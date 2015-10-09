@@ -25,6 +25,7 @@ splat.AppRouter = Backbone.Router.extend({
         $('.header').html(this.headerView.render().el);
         this.movies = new splat.Movies();
         this.movies.fetch();
+//        console.log(this.movies);
     },
 
     home: function() {
@@ -47,28 +48,43 @@ splat.AppRouter = Backbone.Router.extend({
         selectMenuItem($('.about-menu'));
     },
     movies: function(id) {
-        if (id)
-        {
-            alert(id);
-              if (!this.detailsView) {
-                this.detailsView = new splat.Details();};
-        $('#content').html(this.detailsView.render().el);
-
-        $('#title').attr("placeholder","balh");
-            // insert the rendered Home view element into the document DOM
+        if (id) {
+            this.movieModel = this.movies.get(id);
+            if (!this.detailsView) {
+                this.detailsView = new splat.Details({collection: this.movies, model: this.movieModel});
+            }
+            $('#content').html(this.detailsView.render().el);
         }
-        else { 
-         if (!this.moviesView) {
-            this.moviesView = new splat.MovieThumb();};
-            $('#content').html(this.moviesView.render().el);
-		  selectMenuItem($('.browse-menu')); 
+        else {
+            if (!this.moviesView) {
+                this.moviesView = new splat.MovieView({collection:this.movies});
+            }
+            console.log(this.moviesView);
+            $('#content').html(this.moviesView.render());
         }
+//        if (id) {
+//            alert(id);
+//            if (!this.detailsView) {
+//                this.detailsView = new splat.Details({collection: this.movies});
+//            };
+//            $('#content').html(this.detailsView.render(this.movies).el);
+//            $('#title').attr("placeholder","balh");
+//            // insert the rendered Home view element into the document DOM
+//        }
+//        else { 
+//            if (!this.moviesView) {
+//                this.moviesView = new splat.MovieThumb();
+//            };
+//            $('#content').html(this.moviesView.render().el);
+//            selectMenuItem($('.browse-menu')); 
+//        }
     },
     moviesadd: function() {
+        this.movie = new splat.Movie();
         if (!this.detailsView) {
-            this.detailsView = new splat.Details();
+            this.detailsView = new splat.Details({collection: this.movies, model: this.movie});
         };
-    // insert the rendered Home view element into the document DOM
+        // insert the rendered Home view element into the document DOM
         $('#content').html(this.detailsView.render().el);
 		selectMenuItem($('.add-menu')); 
     }
@@ -79,7 +95,7 @@ splat.AppRouter = Backbone.Router.extend({
 // Load HTML templates for Home, Header, About views, and when
 // template loading is complete, instantiate a Backbone router
 // with history.
-splat.utils.loadTemplates(['Home', 'Header', 'About', 'MovieThumb','Details'], function() {
+splat.utils.loadTemplates(['Home', 'Header', 'About', 'Details'], function() {
     splat.app = new splat.AppRouter();
     Backbone.history.start();
 });
