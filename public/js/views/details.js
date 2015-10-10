@@ -17,9 +17,7 @@ splat.Details = Backbone.View.extend({
 		"click #save":  'save',
 		"click #delete": 'destroy',	
 	},
-	save: function() {
-<<<<<<< HEAD
-        
+	save: function() {        
         this.collection.create(
             {title: $('#title').val(),
 		released: $('#released').val(),
@@ -31,7 +29,7 @@ splat.Details = Backbone.View.extend({
 		synopsis: $('#synopsis').val(),
 		freshtTotal: 0.0,
 		freshVotes: 0.0,
-		trailer: $('#trailer').val(),
+		trailer: 'http://html5demos.com/assets/dizzy.webm',
 		poster: 'http://static1.squarespace.com/static/52127948e4b06d5f9d345a0f/t/52128a81e4b06ccc0a1b0f52/1376946817585/episode-six-big-ideas.jpeg?format=original'}, 
             {
                 success: function() {
