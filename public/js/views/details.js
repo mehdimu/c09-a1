@@ -18,6 +18,7 @@ splat.Details = Backbone.View.extend({
 		"click #delete": 'destroy',	
 	},
 	save: function() {
+<<<<<<< HEAD
         
         this.collection.create(
             {title: $('#title').val(),
