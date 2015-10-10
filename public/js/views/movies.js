@@ -17,7 +17,6 @@ splat.MovieView = Backbone.View.extend({
                         ].join('')),
     // render the View
     render: function () {
-		
 		this.movieThumbLoad.done(function(markup) {
 			this.template = _.template(markup);
 			// Now "markup" contains the response to the $.get() request.
@@ -25,12 +24,12 @@ splat.MovieView = Backbone.View.extend({
 			// template() // function.
 			// Finally apply the moviesTemplate shown below to your
 			// movies collection and the template function you just created.
-			
+        })
 			var someMarkup = this.moviesTemplate({
 							movies: this.collection,
-							movieTemplate: this.template})
+							movieTemplate: this.template});
 			this.$el.append(someMarkup);
 			console.log(this.movieThumbLoad);
 			return this;
-        })
+		
 }});
