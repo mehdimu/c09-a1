@@ -31,5 +31,4 @@ splat.MovieView = Backbone.View.extend({
 			this.$el.append(someMarkup);
 			console.log(this.movieThumbLoad);
 			return this;
-		
 }});
