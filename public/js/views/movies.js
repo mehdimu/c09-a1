@@ -27,7 +27,8 @@ splat.MovieView = Backbone.View.extend({
         })
 			var someMarkup = this.moviesTemplate({
 							movies: this.collection,
-							movieTemplate: this.template});
+							movieTemplate: this.template
+			});
 			this.$el.append(someMarkup);
 			console.log(this.movieThumbLoad);
 			return this;

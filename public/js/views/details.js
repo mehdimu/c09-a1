@@ -18,7 +18,7 @@ splat.Details = Backbone.View.extend({
 		"click #delete": 'destroy',	
 	},
 	save: function() {
-        this.movies.create({'title': 'test2'}, {
+        this.collection.create({'title': 'test2'}, {
            success: function() {
             alert('done');
            }});
