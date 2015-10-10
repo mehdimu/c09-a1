@@ -48,5 +48,10 @@ splat.utils = {
 	// When all deferred template-loads have completed,
 	// invoke callback function.
         $.when.apply(null, deferreds).done(callback);
-    }
-};
+    },
+	showNotice: function(){
+	
+	},
+	hideNotice: function(){}
+	
+	};

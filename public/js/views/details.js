@@ -18,6 +18,7 @@ splat.Details = Backbone.View.extend({
 		"click #delete": 'destroy',	
 	},
 	save: function() {        
+	wait: true,  // don't destroy client model until server responds
         this.collection.create(
             {title: $('#title').val(),
 		released: $('#released').val(),
@@ -34,6 +35,8 @@ splat.Details = Backbone.View.extend({
             {
                 success: function() {
                     alert('done');
+					//splat.app.navigate('#movies/_id', {replace:true, trigger:true});
+					splat.utils.showNotice();
                 }});
 	},
 	destroy: function(){
