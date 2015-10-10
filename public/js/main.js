@@ -62,22 +62,6 @@ splat.AppRouter = Backbone.Router.extend({
             console.log(this.moviesView);
             $('#content').html(this.moviesView.render());
         }
-//        if (id) {
-//            alert(id);
-//            if (!this.detailsView) {
-//                this.detailsView = new splat.Details({collection: this.movies});
-//            };
-//            $('#content').html(this.detailsView.render(this.movies).el);
-//            $('#title').attr("placeholder","balh");
-//            // insert the rendered Home view element into the document DOM
-//        }
-//        else { 
-//            if (!this.moviesView) {
-//                this.moviesView = new splat.MovieThumb();
-//            };
-//            $('#content').html(this.moviesView.render().el);
-//            selectMenuItem($('.browse-menu')); 
-//        }
     },
     moviesadd: function() {
         this.movie = new splat.Movie();
@@ -95,6 +79,11 @@ splat.AppRouter = Backbone.Router.extend({
 // Load HTML templates for Home, Header, About views, and when
 // template loading is complete, instantiate a Backbone router
 // with history.
+splat.movieThumbLoad = $.get('tpl/MovieThumb.html');
+splat.movieThumbLoad.done(function(markup) {
+            splat.markup = markup;
+            console.log("done");
+        });
 splat.utils.loadTemplates(['Home', 'Header', 'About', 'Details'], function() {
     splat.app = new splat.AppRouter();
     Backbone.history.start();

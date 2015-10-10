@@ -16,6 +16,11 @@ textarea {
    resize: none;
    margin-bottom: 10px;
 }
+
+#thumbnails {
+    padding-top: 60px;
+}
+
 #rowform{
 	width: 1364px; /*1349*/
 	padding-top:60px;

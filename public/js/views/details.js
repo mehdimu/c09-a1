@@ -18,10 +18,24 @@ splat.Details = Backbone.View.extend({
 		"click #delete": 'destroy',	
 	},
 	save: function() {
-        this.movies.create({'title': 'test2'}, {
-           success: function() {
-            alert('done');
-           }});
+        
+        this.collection.create(
+            {title: $('#title').val(),
+		released: $('#released').val(),
+		director: $('#director').val(),
+		starring: [$('#starring').val()],
+		rating: $('#rating').val(),
+		duration: $('#duration').val(),
+		genre: [$('#genre').val()],
+		synopsis: $('#synopsis').val(),
+		freshtTotal: 0.0,
+		freshVotes: 0.0,
+		trailer: $('#trailer').val(),
+		poster: 'http://static1.squarespace.com/static/52127948e4b06d5f9d345a0f/t/52128a81e4b06ccc0a1b0f52/1376946817585/episode-six-big-ideas.jpeg?format=original'}, 
+            {
+                success: function() {
+                    alert('done');
+                }});
 	},
 	destroy: function(){
 		this.model.destroy({
