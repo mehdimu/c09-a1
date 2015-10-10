@@ -57,7 +57,7 @@ splat.AppRouter = Backbone.Router.extend({
         }
         else {
             if (!this.moviesView) {
-                this.moviesView = new splat.MoviesView({collection:this.movies});
+                this.moviesView = new splat.MovieView({collection:this.movies});
             }
             console.log(this.moviesView);
             $('#content').html(this.moviesView.render());
