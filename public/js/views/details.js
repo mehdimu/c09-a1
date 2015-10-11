@@ -17,9 +17,10 @@ splat.Details = Backbone.View.extend({
 		"click #save":  'save',
 		"click #delete": 'destroy',	
 	},
-	save: function() {        
-	wait: true,  // don't destroy client model until server responds
-        this.collection.create(
+	save: function() {
+        this.model.save(
+//	wait: true,  // don't destroy client model until server responds
+//        this.collection.create(
             {title: $('#title').val(),
 		released: $('#released').val(),
 		director: $('#director').val(),
@@ -31,10 +32,8 @@ splat.Details = Backbone.View.extend({
 		freshtTotal: 0.0,
 		freshVotes: 0.0,
 		trailer: '../img/dizzy.webm',
-		poster: '../img/poster.jpeg'}, 
-            {
+		poster: '../img/poster.jpeg'}, {
                 success: function(resp) {
-//                    alert('done');
 					splat.app.navigate('#movies/'+resp.id, {replace:true, trigger:true});
 					splat.utils.showNotice('Success', "Movie added", 'alert-success');
                 }});
@@ -43,11 +42,12 @@ splat.Details = Backbone.View.extend({
 		this.model.destroy({
 			wait: true,  // don't destroy client model until server responds
 			success: function(model, response) {
-				    // later, we'll navigate to the browse view upon success
-					splat.app.navigate('#', {replace:true, trigger:true});
-					console.log('remove now');
-				    // notification panel, defined in section 2.6
-					splat.utils.showNotice('Success', "Movie deleted", 'alert-success');
+                    splat.utils.showNotice('Success', "Movie deleted", 'alert-success');
+                    setTimeout(function() {
+                        // later, we'll navigate to the browse view upon success
+                        splat.app.navigate('#', {replace:true, trigger:true});
+                        // notification panel, defined in section 2.6
+                    }, 3000);
 			},
 			error: function(model, response) {
 				    // display the error response from the server
