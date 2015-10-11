@@ -30,8 +30,8 @@ splat.Details = Backbone.View.extend({
 		synopsis: $('#synopsis').val(),
 		freshtTotal: 0.0,
 		freshVotes: 0.0,
-		trailer: 'http://html5demos.com/assets/dizzy.webm',
-		poster: 'http://static1.squarespace.com/static/52127948e4b06d5f9d345a0f/t/52128a81e4b06ccc0a1b0f52/1376946817585/episode-six-big-ideas.jpeg?format=original'}, 
+		trailer: '../img/dizzy.webm',
+		poster: '../img/poster.jpeg'}, 
             {
                 success: function() {
                     alert('done');
