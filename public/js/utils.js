@@ -50,7 +50,6 @@ splat.utils = {
         $.when.apply(null, deferreds).done(callback);
     },
 	showNotice: function(){
-	
 	},
 	hideNotice: function(){}
 	

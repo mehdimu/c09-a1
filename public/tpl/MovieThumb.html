@@ -1,4 +1,4 @@
-<div class="thumbnails col-lg-2 col-md-3 col-sm-4 col-xs-6" id="thumbnail">
+<div class="thumbnails col-lg-2 col-md-3 col-sm-4 col-xs-6">
   <div class="thumbnail plain" title="some message">
     <div class="some_class">
       <a href="#movies/<%= _id %>" class="plain">
@@ -8,10 +8,10 @@
             ADD-TEXT
         </video>
           <div class="some_class_2">
-              <%= title %>(<%= released %>) <br/>
-              Directed by: <%= director %> <br/>
-              Starring: <%= starring %> <br/>
-              Genres: <%= genre %> <br/>
+              <b><%= title %></b>(<%= released %>) <br/>
+              <b>Directed by:</b> <%= director %> <br/>
+              <b>Starring: </b><%= starring %> <br/>
+              <b>Genres: </b><%= genre %> <br/>
            </div>
       </a>
     </div>

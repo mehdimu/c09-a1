@@ -23,7 +23,7 @@ textarea {
    margin-bottom: 10px;
 }
 
-#thumbnails {
+.thumbnails {
     padding-top: 60px;
 }
 
@@ -34,6 +34,11 @@ textarea {
 	background-size:   cover;                      /* <------ */
 	background-repeat: no-repeat;
 	padding-bottom:15px;
+}
+
+.some_class_2{
+text-align:right;
+
 }
 .about-home{
 	padding-top:50px;
