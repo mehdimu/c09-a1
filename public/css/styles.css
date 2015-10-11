@@ -1,5 +1,9 @@
+.Success{
+text-align:center;
+}
+
+
 #thumbnail{
-padding-top:60px;
     height: 25%;
     width: 25%;
 }
@@ -24,12 +28,12 @@ textarea {
 }
 
 .thumbnails {
-    padding-top: 60px;
+    padding-top: 80px;
 }
 
 #rowform{
 	width: 1364px; /*1349*/
-	padding-top:60px;
+	padding-top:80px;
 	background-image: url(../img/blank.png);
 	background-size:   cover;                      /* <------ */
 	background-repeat: no-repeat;

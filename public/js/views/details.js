@@ -62,12 +62,12 @@ splat.Details = Backbone.View.extend({
 		this.model.destroy({
 			wait: true,  // don't destroy client model until server responds
 			success: function(model, response) {
-                    splat.utils.showNotice('Success', "Movie deleted", 'alert-success');
-                    setTimeout(function() {
+                    //setTimeout(function() {
                         // later, we'll navigate to the browse view upon success
-                        splat.app.navigate('#', {replace:true, trigger:true});
+                        splat.app.navigate('#movies', {replace:true, trigger:true});
                         // notification panel, defined in section 2.6
-                    }, 3000);
+                    //}, 3000);
+					splat.utils.showNotice('Success', "Movie deleted", 'alert-success');
 			},
 			error: function(model, response) {
 				    // display the error response from the server
