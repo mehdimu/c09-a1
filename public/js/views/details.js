@@ -18,6 +18,26 @@ splat.Details = Backbone.View.extend({
 		"click #delete": 'destroy',	
 	},
 	save: function() {
+        if (this.model.isNew()) {
+            this.collection.create(
+                {title: $('#title').val(),
+                released: $('#released').val(),
+                director: $('#director').val(),
+                starring: [$('#starring').val()],
+                rating: $('#rating').val(),
+                duration: $('#duration').val(),
+                genre: [$('#genre').val()],
+                synopsis: $('#synopsis').val(),
+                freshtTotal: 0.0,
+                freshVotes: 0.0,
+                trailer: '../img/dizzy.webm',
+                poster: '../img/poster.jpeg'}, {
+                        success: function(resp) {
+                            splat.app.navigate('#movies/'+resp.id, {replace:true, trigger:true});
+                            splat.utils.showNotice('Success', "Movie added", 'alert-success');
+                        }});
+            }
+        else {
         this.model.save(
 //	wait: true,  // don't destroy client model until server responds
 //        this.collection.create(
@@ -37,7 +57,7 @@ splat.Details = Backbone.View.extend({
 					splat.app.navigate('#movies/'+resp.id, {replace:true, trigger:true});
 					splat.utils.showNotice('Success', "Movie added", 'alert-success');
                 }});
-	},
+	}},
 	destroy: function(){
 		this.model.destroy({
 			wait: true,  // don't destroy client model until server responds
