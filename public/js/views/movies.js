@@ -25,6 +25,6 @@ splat.MovieView = Backbone.View.extend({
 			});
         console.log('initiazliced');
         console.log(this.collection);
-			this.$el.append(someMarkup);
+			this.$el.html(someMarkup);
 			return this;
 }});
