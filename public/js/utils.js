@@ -49,8 +49,15 @@ splat.utils = {
 	// invoke callback function.
         $.when.apply(null, deferreds).done(callback);
     },
-	showNotice: function(){
+	showNotice: function(clas, msg, action){
+        var el = $('.'+clas);
+        el.text(msg);
+        el.addClass(action);        
 	},
-	hideNotice: function(){}
+	hideNotice: function(clas, action){
+        var el = $('.'+clas);
+        el.text();
+        el.removeClass(action);
+    }
 	
 	};
