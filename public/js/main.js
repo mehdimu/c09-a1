@@ -74,7 +74,7 @@ splat.movieThumbLoad = $.get('tpl/MovieThumb.html');
 splat.movieThumbLoad.done(function(markup) {
             splat.markup = markup;
         });
-splat.utils.loadTemplates(['Home', 'Header', 'About', 'Details'], function() {
+splat.utils.loadTemplates(['Home', 'Header', 'About', 'Details','MovieThumb'], function() {
     splat.app = new splat.AppRouter();
     Backbone.history.start();
 });

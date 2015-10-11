@@ -52,12 +52,15 @@ splat.utils = {
 	showNotice: function(clas, msg, action){
         var el = $('.'+clas);
         el.text(msg);
-        el.addClass(action);        
+        el.addClass(action);
+		el.fadeOut(5000);
+		
 	},
 	hideNotice: function(clas, action){
         var el = $('.'+clas);
         el.text();
         el.removeClass(action);
+	
     }
 	
 	};
