@@ -35,7 +35,12 @@ splat.Details = Backbone.View.extend({
                         success: function(resp) {
                             splat.app.navigate('#movies/'+resp.id, {replace:true, trigger:true});
                             splat.utils.showNotice('Success', "Movie added", 'alert-success');
-                        }});
+                        },	error: function(resp) {
+				    // display the error response from the server
+					splat.utils.showNotice('Success', "Movie add failed", 'alert-danger');
+					splat.utils.requestFailed(response);
+				}
+						});
             }
         else {
         this.model.save(
@@ -56,7 +61,14 @@ splat.Details = Backbone.View.extend({
                 success: function(resp) {
 					splat.app.navigate('#movies/'+resp.id, {replace:true, trigger:true});
 					splat.utils.showNotice('Success', "Movie updated", 'alert-info');
-                }});
+                },
+				error: function(resp) {
+				    // display the error response from the server
+					splat.utils.showNotice('Success', "Movie update failed", 'alert-danger');
+					splat.utils.requestFailed(response);
+				}
+				
+				});
 	}},
 	destroy: function(){
 		this.model.destroy({
