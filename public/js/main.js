@@ -51,6 +51,7 @@ splat.AppRouter = Backbone.Router.extend({
             this.moviesView = new splat.MovieView({collection:this.movies});
         }
         $('#content').html(this.moviesView.render().el);
+		selectMenuItem($('.browse-menu')); 
     },
     moviedit: function(id) {
         this.movieModel = this.movies.get(id);
