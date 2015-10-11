@@ -35,8 +35,8 @@ splat.Details = Backbone.View.extend({
             {
                 success: function() {
                     alert('done');
-					//splat.app.navigate('#movies/_id', {replace:true, trigger:true});
-					splat.utils.showNotice();
+					splat.app.navigate('#movies/_id', {replace:true, trigger:true});
+					splat.utils.showNotice('Success', "Movie added", 'alert-success');
                 }});
 	},
 	destroy: function(){
@@ -47,7 +47,7 @@ splat.Details = Backbone.View.extend({
 					splat.app.navigate('#', {replace:true, trigger:true});
 					console.log('remove now');
 				    // notification panel, defined in section 2.6
-					splat.utils.showNotice('Success', "Movie deleted", 'alert-success')
+					splat.utils.showNotice('Success', "Movie deleted", 'alert-success');
 			},
 			error: function(model, response) {
 				    // display the error response from the server
