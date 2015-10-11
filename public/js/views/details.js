@@ -55,7 +55,7 @@ splat.Details = Backbone.View.extend({
 		poster: '../img/poster.jpeg'}, {
                 success: function(resp) {
 					splat.app.navigate('#movies/'+resp.id, {replace:true, trigger:true});
-					splat.utils.showNotice('Success', "Movie added", 'alert-success');
+					splat.utils.showNotice('Success', "Movie updated", 'alert-info');
                 }});
 	}},
 	destroy: function(){
