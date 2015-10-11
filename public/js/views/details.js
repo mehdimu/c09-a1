@@ -45,8 +45,9 @@ splat.Details = Backbone.View.extend({
 			success: function(model, response) {
 				    // later, we'll navigate to the browse view upon success
 					splat.app.navigate('#', {replace:true, trigger:true});
+					console.log('remove now');
 				    // notification panel, defined in section 2.6
-					splat.utils.showAlert('Success', "Movie deleted", 'alert-success')
+					splat.utils.showNotice('Success', "Movie deleted", 'alert-success')
 			},
 			error: function(model, response) {
 				    // display the error response from the server
