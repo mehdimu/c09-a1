@@ -29,7 +29,10 @@ background-color: black;
 	font-family: Verdana;
 	text-align: center;
 }
-
+.control-label{
+font-family:Andika;
+font-size:18px;
+white-space: nowrap;}
 #footer{
 	color:grey;
 	background-color: black;
