@@ -1,24 +1,32 @@
 .Success{
 text-align:center;
 }
-
-.some_class{
+/*For the Browse view, set a left-margin of 0px 
+and a right-margin of 15px on your thumbnail <li> elements. 
+For the individual Movie thumbnails, set a relative position,
+ a border-width of 1px, border-radius of 4px, 
+border-color of #25383C, a right-margin of 5px, 
+text that is scaled to 80% of that of the parent element, 
+and horizontally-right-aligned text. */
+.thumbnail{
 position:relative;
-border: 1px;
+border-width: 1px;
 border-color: #25383C;
 font-size:80%;
 text-align:right;
 margin-right: 5px;
 background-color: black;
+border-radius: 4px;
 }
 
-.thumbnail{
-	margin-left:0px;
-	margin-right:15px;
-}
-.thumbnails {
+.thumbnails{
     padding-top: 110px;
 }
+
+.thumbnail .li{
+	margin-left:0px;
+	margin-right:15px;
+	}
 
 #content{
 	color:white;
