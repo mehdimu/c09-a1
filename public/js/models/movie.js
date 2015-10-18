@@ -24,9 +24,11 @@ splat.Movie = Backbone.Model.extend({
 		title: function(value) {
 			// if a validator is defined on this key
 			// test it, else defaults to valid
-			return (this.validators.title[value]) ?
+			/*return (this.validators.title[value]) ?
 			this.validators.title[value](this.get(value))
-			: {isValid: true};
+			: {isValid: true};*/
+			 if (!this.validators.title)
+				return 'Please fill title field.';
 		},
 
 		director: function(value) {
@@ -93,7 +95,7 @@ splat.Movie = Backbone.Model.extend({
 			: {isValid: true};
 		},
 		poster: function(value){
-		// if a validator is defined on this key
+			// if a validator is defined on this key
 			// test it, else defaults to valid
 			return (this.validators.poster[value]) ?
 			this.validators.poster[value](this.get(value))
@@ -101,7 +103,7 @@ splat.Movie = Backbone.Model.extend({
 		},
 		
 		dated: function(value){
-		// if a validator is defined on this key
+			// if a validator is defined on this key
 			// test it, else defaults to valid
 			return (this.validators.dated[value]) ?
 			this.validators.dated[value](this.get(value))

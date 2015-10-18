@@ -14,7 +14,7 @@ splat.Details = Backbone.View.extend({
         return this;    // support method chaining
     },
 	change: function(event){
-			// Remove any existing alert message(s)
+		// Remove any existing alert message(s)
 		splat.utils.hideNotice();
 		// object to hold form-field name:value pairs
 		var changeObj = {};
@@ -81,10 +81,11 @@ splat.Details = Backbone.View.extend({
 					splat.app.navigate('#movies/'+resp.id, {replace:true, trigger:true});
 					splat.utils.showNotice('Success', "Movie updated", 'alert-info');
                 },
-				error: function(resp) {
+				error: function(resp,error) {
 				    // display the error response from the server
 					splat.utils.showNotice('Success', "Movie update failed", 'alert-danger');
-					splat.utils.requestFailed(response);
+					splat.utils.requestFailed(error);
+					
 				}
 				
 				});
