@@ -42,6 +42,7 @@ splat.Movie = Backbone.Model.extend({
 		released: function(value){
 			// if a validator is defined on this key
 			// test it, else defaults to valid
+			//range: [1910, 2016]
 			return (this.validators.released[value]) ?
 			this.validators.released[value](this.get(value))
 			: {isValid: true};
