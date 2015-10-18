@@ -5,7 +5,22 @@
 var splat =  splat || {};
 
 splat.Movie = Backbone.Model.extend({
-	this.validators {
+	defaults: {
+		title: "",
+		released: null,
+		director: "",
+		starring: [],
+		rating: "",
+		duration: null,
+		genre: [],
+		synopsis: "",
+		freshtTotal: 0.0,
+		freshVotes: 0.0,
+		trailer: null,
+		poster: "",
+		dated: new Date()
+	},
+	
 		title: function(value) {
 			// if a validator is defined on this key
 			// test it, else defaults to valid
@@ -91,23 +106,8 @@ splat.Movie = Backbone.Model.extend({
 			return (this.validators.dated[value]) ?
 			this.validators.dated[value](this.get(value))
 			: {isValid: true};
-		}	
 	},
-	defaults: {
-		title: "",
-		released: null,
-		director: "",
-		starring: [],
-		rating: "",
-		duration: null,
-		genre: [],
-		synopsis: "",
-		freshtTotal: 0.0,
-		freshVotes: 0.0,
-		trailer: null,
-		poster: "",
-		dated: new Date()
-	},
+	
 	idAttribute: "_id"
 
 })
