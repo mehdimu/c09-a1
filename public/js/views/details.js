@@ -13,6 +13,25 @@ splat.Details = Backbone.View.extend({
         this.$el.html(this.template(this.model.attributes));
         return this;    // support method chaining
     },
+	change: function(event){
+			// Remove any existing alert message(s)
+		splat.utils.hideNotice();
+		// object to hold form-field name:value pairs
+		var changeObj = {};
+		// Add change value to changeObj; change event is
+		// triggered once for each changed field value
+		changeObj[event.target.name] = event.target.value;
+		// reflect changes back to the model
+		this.model.set(changeObj);
+		// Run validation rule on changed item
+		var check =
+		this.model.validateItem(event.target.name);
+		// check is tuple <isValid: Boolean, message: String>
+		check.isValid ?
+		splat.utils.removeValidationError(event.target.name)
+		:splat.utils.addValidationError(event.target.name,
+		check.message);
+	},
 	events:{
 		"click #save":  'save',
 		"click #delete": 'destroy',	

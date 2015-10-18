@@ -60,6 +60,22 @@ splat.utils = {
         el.text();
         el.removeClass(action);
 	
-    }
+    },
+	addValidationError: function(field, message) {
+		// use jQuery to address input field by its
+		// name attribute
+		/*var controlGroup = ... +field+ ...).parent();
+		controlGroup.addClass('error');
+		$('.help-block', controlGroup).html(message);*/
+	},
+	removeValidationError: function (field) {
+		// similar to above
+		// use jQuery to address input field by its
+		// name attribute
+		/*var controlGroup = ... +field+ ...).parent();
+		controlGroup.addClass('error');
+		$('.help-block', controlGroup).html(message);*/
+
+	}
 	
 	};
