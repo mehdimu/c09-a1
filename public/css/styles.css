@@ -20,13 +20,10 @@ border-radius: 4px;
 }
 
 .thumbnails{
-    padding-top: 110px;
-}
-
-.thumbnail .li{
+	padding-top: 110px;
 	margin-left:0px;
 	margin-right:15px;
-	}
+}
 
 #content{
 	color:white;
