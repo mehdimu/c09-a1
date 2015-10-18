@@ -20,7 +20,8 @@ splat.Movie = Backbone.Model.extend({
 		poster: "",
 		dated: new Date()
 	},
-	
+	//this.validators *ali*
+	validators:{	
 		title: function(value) {
 			// if a validator is defined on this key
 			// test it, else defaults to valid
@@ -108,6 +109,7 @@ splat.Movie = Backbone.Model.extend({
 			return (this.validators.dated[value]) ?
 			this.validators.dated[value](this.get(value))
 			: {isValid: true};
+		}
 	},
 	
 	idAttribute: "_id"
