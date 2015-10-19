@@ -14,6 +14,7 @@ splat.Details = Backbone.View.extend({
         return this;    // support method chaining
     },
 	change: function(event){
+		console.log('Form changed!');
 		// Remove any existing alert message(s)
 		splat.utils.hideNotice();
 		// object to hold form-field name:value pairs
@@ -35,6 +36,7 @@ splat.Details = Backbone.View.extend({
 	events:{
 		"click #save":  'save',
 		"click #delete": 'destroy',	
+		"change input": 'change'
 	},
 	save: function() {
         if (this.model.isNew()) {

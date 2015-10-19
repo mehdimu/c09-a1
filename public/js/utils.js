@@ -60,22 +60,24 @@ splat.utils = {
 	},
 	hideNotice: function(){
 		var el = $('.Success');
-		//el.hide();
+		el.stop();
     },
 	addValidationError: function(field, message) {
 		// use jQuery to address input field by its
 		// name attribute
-		/*var controlGroup = ... +field+ ...).parent();
+		console.log('Form changed!');
+		var controlGroup = $('.'+field).parent();
 		controlGroup.addClass('error');
-		$('.help-block', controlGroup).html(message);*/
+		$('.help-block', controlGroup).html(message);
 	},
 	removeValidationError: function (field) {
 		// similar to above
 		// use jQuery to address input field by its
 		// name attribute
-		/*var controlGroup = ... +field+ ...).parent();
-		controlGroup.addClass('error');
-		$('.help-block', controlGroup).html(message);*/
+		console.log('Form changed21!');
+		controlGroup = $('.'+field).parent();
+		controlGroup.removeClass('error');
+		$('.help-block', controlGroup).html('');
 
 	}
 	

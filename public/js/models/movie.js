@@ -28,6 +28,7 @@ splat.Movie = Backbone.Model.extend({
 			/*return (this.validators.title[value]) ?
 			this.validators.title[value](this.get(value))
 			: {isValid: true};*/
+			console.log("Im here!");
 			 if (!this.validators.title)
 				return 'Please fill title field.';
 		},
