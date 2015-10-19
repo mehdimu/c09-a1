@@ -75,7 +75,7 @@ splat.utils = {
 		// use jQuery to address input field by its
 		// name attribute
 		console.log('RemoveValidationError!');
-		var formgroup = $('#'+field).parent();
+		var formgroup = $('#'+field).parent().parent();
 		formgroup.removeClass('has-error');
 		$('.help-block', formgroup).html('');
 

@@ -28,6 +28,7 @@ splat.Details = Backbone.View.extend({
 		var check =
 		this.model.validateItem(event.target.id);
 		// check is tuple <isValid: Boolean, message: String>
+		console.log(check.isValid);
 		check.isValid ? splat.utils.removeValidationError(event.target.id) : splat.utils.addValidationError(event.target.id, check.message);
 	},
 	events:{
