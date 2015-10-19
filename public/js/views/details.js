@@ -21,21 +21,18 @@ splat.Details = Backbone.View.extend({
 		var changeObj = {};
 		// Add change value to changeObj; change event is
 		// triggered once for each changed field value
-		changeObj[event.target.name] = event.target.value;
+		changeObj[event.target.id] = event.target.value;
 		// reflect changes back to the model
 		this.model.set(changeObj);
 		// Run validation rule on changed item
 		var check =
-		this.model.validateItem(event.target.name);
+		this.model.validateItem(event.target.id);
 		// check is tuple <isValid: Boolean, message: String>
-		check.isValid ?
-		splat.utils.removeValidationError(event.target.name)
-		:splat.utils.addValidationError(event.target.name,
-		check.message);
+		check.isValid ? splat.utils.removeValidationError(event.target.id) : splat.utils.addValidationError(event.target.id, check.message);
 	},
 	events:{
 		"click #save":  'save',
-		"click #delete": 'destroy',	
+		"click #delete": 'destroy',
 		"change input": 'change'
 	},
 	save: function() {
@@ -87,9 +84,9 @@ splat.Details = Backbone.View.extend({
 				    // display the error response from the server
 					splat.utils.showNotice("Movie update failed", 'alert-danger');
 					splat.utils.requestFailed(error);
-					
+
 				}
-				
+
 				});
 	}},
 	destroy: function(){

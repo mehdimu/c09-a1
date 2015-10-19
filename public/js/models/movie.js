@@ -20,17 +20,25 @@ splat.Movie = Backbone.Model.extend({
 		poster: "",
 		dated: new Date()
 	},
+
+	validateItem: function(key) {
+		return (this.validators[key]) ?
+			this.validators[key](this.get(key))
+			: {isValid: true};
+	},
 	//this.validators *ali*
-	validators:{	
+	validators:{
 		title: function(value) {
 			// if a validator is defined on this key
 			// test it, else defaults to valid
 			/*return (this.validators.title[value]) ?
 			this.validators.title[value](this.get(value))
 			: {isValid: true};*/
-			console.log("Im here!");
-			 if (!this.validators.title)
-				return 'Please fill title field.';
+			var titleRegex = /^[a-zA-Z0-9 \,\.\?\-\'\*]+$/;
+			return (value &&
+				titleRegex.test(value)) ?
+				{isValid: true}
+				: {isValid: false, message: "Only 1 or more letters-digits-spaces allowed"};
 		},
 
 		director: function(value) {
@@ -104,7 +112,7 @@ splat.Movie = Backbone.Model.extend({
 			this.validators.poster[value](this.get(value))
 			: {isValid: true};
 		},
-		
+
 		dated: function(value){
 			// if a validator is defined on this key
 			// test it, else defaults to valid
@@ -113,7 +121,7 @@ splat.Movie = Backbone.Model.extend({
 			: {isValid: true};
 		}
 	},
-	
+
 	idAttribute: "_id"
 
 })

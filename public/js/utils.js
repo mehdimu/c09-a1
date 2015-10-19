@@ -55,7 +55,7 @@ splat.utils = {
         el.text(msg);
         el.addClass(className);
 		el.fadeOut(5000, function(){
-			el.removeClass(className);	
+			el.removeClass(className);
 		});
 	},
 	hideNotice: function(){
@@ -65,20 +65,20 @@ splat.utils = {
 	addValidationError: function(field, message) {
 		// use jQuery to address input field by its
 		// name attribute
-		console.log('Form changed!');
-		var controlGroup = $('.'+field).parent();
-		controlGroup.addClass('error');
-		$('.help-block', controlGroup).html(message);
+		console.log('AddValidationError!');
+		var formgroup = $('#'+field).parent().parent();
+		formgroup.addClass('has-error');
+		$('.help-block', formgroup).html(message);
 	},
 	removeValidationError: function (field) {
 		// similar to above
 		// use jQuery to address input field by its
 		// name attribute
-		console.log('Form changed21!');
-		controlGroup = $('.'+field).parent();
-		controlGroup.removeClass('error');
-		$('.help-block', controlGroup).html('');
+		console.log('RemoveValidationError!');
+		var formgroup = $('#'+field).parent();
+		formgroup.removeClass('has-error');
+		$('.help-block', formgroup).html('');
 
 	}
-	
+
 	};
