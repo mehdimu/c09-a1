@@ -49,17 +49,18 @@ splat.utils = {
 	// invoke callback function.
         $.when.apply(null, deferreds).done(callback);
     },
-	showNotice: function(clas, msg, action){
-        var el = $('.'+clas);
+	showNotice: function(msg, className){
+        var el = $('.Success');
+        el.show();
         el.text(msg);
-        el.addClass(action);
-		el.fadeOut(5000);		
+        el.addClass(className);
+		el.fadeOut(5000, function(){
+			el.removeClass(className);	
+		});
 	},
-	hideNotice: function(clas, action){
-        var el = $('.'+clas);
-        el.text();
-        el.removeClass(action);
-	
+	hideNotice: function(){
+		var el = $('.Success');
+		//el.hide();
     },
 	addValidationError: function(field, message) {
 		// use jQuery to address input field by its
