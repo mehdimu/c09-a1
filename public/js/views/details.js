@@ -34,7 +34,8 @@ splat.Details = Backbone.View.extend({
 	events:{
 		"click #save":  'save',
 		"click #delete": 'destroy',
-		"change input": 'change'
+		"change input": 'change',
+		"change textarea": 'change'
 	},
 	save: function() {
         if (this.model.isNew()) {
@@ -94,11 +95,7 @@ splat.Details = Backbone.View.extend({
 		this.model.destroy({
 			wait: true,  // don't destroy client model until server responds
 			success: function(model, response) {
-                    //setTimeout(function() {
-                        // later, we'll navigate to the browse view upon success
                         splat.app.navigate('#movies', {replace:true, trigger:true});
-                        // notification panel, defined in section 2.6
-                    //}, 3000);
 					splat.utils.showNotice("Movie deleted", 'alert-danger');
 			},
 			error: function(model, response) {
