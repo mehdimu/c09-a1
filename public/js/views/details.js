@@ -27,7 +27,16 @@ splat.Details = Backbone.View.extend({
 		var check =
 		this.model.validateItem(event.target.id);
 		// check is tuple <isValid: Boolean, message: String>
-		check.isValid ? splat.utils.removeValidationError(event.target.id) : splat.utils.addValidationError(event.target.id, check.message);
+		if (check.isValid){
+			splat.utils.removeValidationError(event.target.id);
+			splat.utils.showNotice("Note: Changes made! Remember to click save!", 'alert-info');
+		}
+		else{
+			splat.utils.addValidationError(event.target.id, check.message);
+			splat.utils.showNotice("Note: There are errors in your form, please fix them before proceeding", 'alert-danger');
+		}
+		//check.isValid ? splat.utils.removeValidationError(event.target.id) : splat.utils.addValidationError(event.target.id, check.message);
+		
 	},
 	test: function(){
 		// Run validation rule on changed item
