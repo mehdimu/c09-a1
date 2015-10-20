@@ -33,7 +33,6 @@ splat.Details = Backbone.View.extend({
 		}
 		else{
 			splat.utils.addValidationError(event.target.id, check.message);
-			splat.utils.showNotice("Note: There are errors in your form, please fix them before proceeding", 'alert-danger');
 		}
 		//check.isValid ? splat.utils.removeValidationError(event.target.id) : splat.utils.addValidationError(event.target.id, check.message);
 		
