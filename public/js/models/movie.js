@@ -55,7 +55,7 @@ splat.Movie = Backbone.Model.extend({
 			return (value &&
 				starRegex.test(value)) ?
 				{isValid: true}
-				: {isValid: false, message: "Only white space seperated words are allowed"}
+				: {isValid: false, message: "Only white space comma seperated words are allowed"}
 		
 		},
 		rating: function(value){
@@ -81,7 +81,7 @@ splat.Movie = Backbone.Model.extend({
 			return (value &&
 				genreRegex.test(value)) ?
 				{isValid: true}
-				: {isValid: false, message: "Only white space seperated words are allowed"}
+				: {isValid: false, message: "Only white space comma seperated words are allowed"}
 		},
 		synopsis: function(value){
 			var synopsisRegex = /^(\w.|.\w|.)+$/
@@ -110,7 +110,7 @@ splat.Movie = Backbone.Model.extend({
 				: {isValid: false, message: "Only non-negative integers"}*/
 		},
 		trailer: function(value){
-			if (value === "")
+			if (value === "" || value === null)
 				{
 					return{isValid: true};
 				}

@@ -14,7 +14,6 @@ splat.Details = Backbone.View.extend({
         return this;    // support method chaining
     },
 	change: function(event){
-		console.log('Form changed!');
 		// Remove any existing alert message(s)
 		splat.utils.hideNotice();
 		// object to hold form-field name:value pairs
@@ -28,11 +27,31 @@ splat.Details = Backbone.View.extend({
 		var check =
 		this.model.validateItem(event.target.id);
 		// check is tuple <isValid: Boolean, message: String>
-		console.log(check.isValid);
 		check.isValid ? splat.utils.removeValidationError(event.target.id) : splat.utils.addValidationError(event.target.id, check.message);
 	},
+	test: function(){
+		// Run validation rule on changed item
+		var list = ['title','released','director','starring','rating','duration','genre','synopsis','trailer'];
+		var problem = false;
+		for(var k in list) {
+			 console.log(list[k]);
+			 var check = this.model.validateItem(list[k]);
+			 if (check.isValid){
+				splat.utils.removeValidationError(list[k]);
+			}
+			else {
+				splat.utils.addValidationError(list[k], check.message);
+				problem = true;
+				break;
+			}
+		}
+		if (!problem){
+			this.save();
+		}
+		
+	},
 	events:{
-		"click #save":  'save',
+		"click #save":  'test',
 		"click #delete": 'destroy',
 		"change input": 'change',
 		"change textarea": 'change'
@@ -50,7 +69,7 @@ splat.Details = Backbone.View.extend({
                 synopsis: $('#synopsis').val(),
                 freshtTotal: 0.0,
                 freshVotes: 0.0,
-                trailer: '../img/dizzy.webm',
+                trailer: $('#trailer').val(),
                 poster: '../img/poster.jpeg'}, {
                         success: function(resp) {
                             splat.app.navigate('#movies/'+resp.id, {replace:true, trigger:true});
@@ -76,7 +95,7 @@ splat.Details = Backbone.View.extend({
 		synopsis: $('#synopsis').val(),
 		freshtTotal: 0.0,
 		freshVotes: 0.0,
-		trailer: '../img/dizzy.webm',
+		trailer: $('#trailer').val(),
 		poster: '../img/poster.jpeg'}, {
                 success: function(resp) {
 					splat.app.navigate('#movies/'+resp.id, {replace:true, trigger:true});
