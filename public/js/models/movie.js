@@ -67,22 +67,23 @@ splat.Movie = Backbone.Model.extend({
 			//comma-separated sequences of whitespace-separated words, 
 			//each such word which may optionally include special characters: "-", "'".
 			//help on csv part
-			var starringRegex = /^\"([^"]+)\",\s*\"([^"]+)\"$/;
+			var starRegex = /^(?:[a-zA-Z0-9-,.'"\s]*(?:\s*[a-zA-Z0-9-,.'"\s]*)*)\s*(?:,\s*(?:[a-zA-Z0-9-,.'"\s]*(?:\s*[a-zA-Z0-9-,.'"\s]*)*))*$/
 			return (value &&
-				starringRegex.test(value)) ?
+				starRegex.test(value)) ?
 				{isValid: true}
 				: {isValid: false, message: "Only white space seperated words are allowed"}
+		
 		},
 		rating: function(value){
 			// if a validator is defined on this key
 			// test it, else defaults to valid
 			 //G, PG, PG-13, R, NC-17, NR
-			 //help on pg-13 and nc-17
-			var ratingRegex = /^G|PG|R|NR|PG-13|NC-17$/
-			return (value &&
-				ratingRegex.test(value)) ?
-				{isValid: true}
-				: {isValid: false, message: "Only G, PG, PG-13, R, NC-17, NR are allowed"}
+			if (value === "PG-13" || value === "NC-17" || value === "PG" || value === "G" || value==="R" ||value==="NR"){
+			 	return{isValid:true}
+			 }
+			else{
+				return{isValid:false,message: "Only G, PG, PG-13, R, NC-17, NR are allowed"}
+			}
 		},
 		duration: function(value){
 			// if a validator is defined on this key
@@ -99,10 +100,11 @@ splat.Movie = Backbone.Model.extend({
 			//starring and genre must consist of one-or-more 
 			//comma-separated sequences of whitespace-separated words, 
 			//each such word which may optionally include special characters: "-", "'".
-			//help on csv part
-			var starringRegex = /^\"([^"]+)\",\s*\"([^"]+)\"$/;
+			//	"-", "'". 
+
+			var genreRegex = /^(?:[a-zA-Z0-9-,.'"\s]*(?:\s*[a-zA-Z0-9-,.'"\s]*)*)\s*(?:,\s*(?:[a-zA-Z0-9-,.'"\s]*(?:\s*[a-zA-Z0-9-,.'"\s]*)*))*$/
 			return (value &&
-				starringRegex.test(value)) ?
+				genreRegex.test(value)) ?
 				{isValid: true}
 				: {isValid: false, message: "Only white space seperated words are allowed"}
 		},
@@ -110,10 +112,10 @@ splat.Movie = Backbone.Model.extend({
 			// if a validator is defined on this key
 			// test it, else defaults to valid
 			var synopsisRegex = /^\w$/
-			return( value &&
+			return (value &&
 				synopsisRegex.test(value)) ?
 				{isValid: true}
-				: {isValid: false, message: "Only white space seperated words are allowed"}
+				: {isValid: false, message: "Please write something"}
 		},
 		freshTotal: function(value){
 		// if a validator is defined on this key
@@ -155,9 +157,9 @@ splat.Movie = Backbone.Model.extend({
 		dated: function(value){
 			// if a validator is defined on this key
 			// test it, else defaults to valid
-			return (this.validators.dated[value]) ?
+			/*return (this.validators.dated[value]) ?
 			this.validators.dated[value](this.get(value))
-			: {isValid: true};
+			: {isValid: true};*/
 		}
 	},
 
