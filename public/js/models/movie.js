@@ -17,7 +17,7 @@ splat.Movie = Backbone.Model.extend({
 		freshtTotal: 0.0,
 		freshVotes: 0.0,
 		trailer: null,
-		poster: "",
+		poster: "/img/poster.jpeg",
 		dated: new Date()
 	},
 
@@ -56,7 +56,7 @@ splat.Movie = Backbone.Model.extend({
 				starRegex.test(value)) ?
 				{isValid: true}
 				: {isValid: false, message: "Only white space comma seperated words are allowed"}
-		
+
 		},
 		rating: function(value){
 			 //G, PG, PG-13, R, NC-17, NR

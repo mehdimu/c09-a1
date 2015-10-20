@@ -35,7 +35,7 @@ splat.Details = Backbone.View.extend({
 			splat.utils.addValidationError(event.target.id, check.message);
 		}
 		//check.isValid ? splat.utils.removeValidationError(event.target.id) : splat.utils.addValidationError(event.target.id, check.message);
-		
+
 	},
 	test: function(){
 		// Run validation rule on changed item
@@ -56,13 +56,79 @@ splat.Details = Backbone.View.extend({
 		if (!problem){
 			this.save();
 		}
-		
+
 	},
 	events:{
 		"click #save":  'test',
 		"click #delete": 'destroy',
+		"change #selectImage": 'selectImage',
 		"change input": 'change',
-		"change textarea": 'change'
+		"change textarea": 'change',
+		"drop #detailsImage": 'dropHandler',
+		"dragover #detailsImage": 'dragoverHandler'
+	},
+	selectImage: function(event) {
+		// set object attribute for image uploader
+		this.pictureFile = event.target.files[0];
+		// if the file type is image, read it
+		if ( true//check if this.pictureFile is image...
+			) {
+			this.imageRead(this.pictureFile,
+			this.pictureFile.type);
+		}
+		// else display error notification
+	},
+	imageRead: function(pictureFile, type) {
+		var self = this;
+		var reader = new FileReader();
+		// callback for when read operation is finished
+		reader.onload = function(event) {
+		var targetImgElt = $('#detailsImage')[0];
+		// reader.result is image data in base64 format
+		targetImgElt.src = reader.result;
+		self.model.set('poster', reader.result);
+		};
+		reader.readAsDataURL(pictureFile);
+		// read image file
+	},
+	dragoverHandler: function(event) {
+		// don't let parent element catch event
+		event.stopPropagation();
+		// prevent default to enable drop event
+		event.preventDefault();
+		// jQuery event doesn’t have dataTransfer
+		// field - so use originalEvent
+		event.originalEvent.dataTransfer.dropEffect = 'copy';
+	},
+	dropHandler: function (event) {
+		console.log("here2");
+		event.stopPropagation(); event.preventDefault();
+		var ev = event.originalEvent;
+		// set object attribute for use by uploadPicture
+		this.pictureFile = ev.dataTransfer.files[0];
+		// only process image files
+		if ( true
+		// check that file is image type...
+		) {
+		// Read image file and display in img tag
+		this.imageRead(this.pictureFile,
+		this.pictureFile.type);
+		}
+		// else display notification error
+	},
+	resize: function(sourceImg, type, quality) {
+		var type = type || "image/jpeg"; // default MIME image type
+		var quality = quality || "0.95"; // tradeoff quality vs size
+		var image = new Image(), MAX_HEIGHT = 300, MAX_WIDTH = 450;
+		image.src = sourceImg;
+		image.height = image.height // ADD CODE to scale height
+		image.width = image.width // ADD CODE to scale height
+		var canvas = document.createElement("canvas");
+		canvas.width = image.width; // scale canvas to match image
+		canvas.height = image.height;
+		var ctx = canvas.getContext("2d"); // get 2D renderig context
+		ctx.drawImage(image,0,0, image.width, image.height); // render
+		return canvas.toDataURL(type, quality);
 	},
 	save: function() {
         if (this.model.isNew()) {
@@ -78,7 +144,7 @@ splat.Details = Backbone.View.extend({
                 freshtTotal: 0.0,
                 freshVotes: 0.0,
                 trailer: $('#trailer').val(),
-                poster: '../img/poster.jpeg'}, {
+                poster: $('#detailsImage')[0].src}, {
                         success: function(resp) {
                             splat.app.navigate('#movies/'+resp.id, {replace:true, trigger:true});
                             splat.utils.showNotice("Movie added", 'alert-success');
@@ -103,8 +169,7 @@ splat.Details = Backbone.View.extend({
 		synopsis: $('#synopsis').val(),
 		freshtTotal: 0.0,
 		freshVotes: 0.0,
-		trailer: $('#trailer').val(),
-		poster: '../img/poster.jpeg'}, {
+		trailer: $('#trailer').val()}, {
                 success: function(resp) {
 					splat.app.navigate('#movies/'+resp.id, {replace:true, trigger:true});
 					splat.utils.showNotice("Movie updated", 'alert-info');
