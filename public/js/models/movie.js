@@ -7,7 +7,7 @@ var splat =  splat || {};
 splat.Movie = Backbone.Model.extend({
 	defaults: {
 		title: "",
-		released: null,
+		released: "",
 		director: "",
 		starring: [],
 		rating: "",
