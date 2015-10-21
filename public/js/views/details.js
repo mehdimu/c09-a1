@@ -71,7 +71,7 @@ splat.Details = Backbone.View.extend({
 		// set object attribute for image uploader
 		this.pictureFile = event.target.files[0];
 		// if the file type is image, read it
-        var Extension = this.pictureFile.type.substring(this.pictureFile.type.lastIndexOf('/') + 1).toLowerCase(); 
+        var Extension = this.pictureFile.type.substring(this.pictureFile.type.lastIndexOf('/') + 1).toLowerCase();
         if (Extension === "gif" || Extension === "png" || Extension === "bmp" || Extension === "jpeg" || Extension === "jpg"){
 			this.imageRead(this.pictureFile, this.pictureFile.type);
 		}
@@ -79,7 +79,7 @@ splat.Details = Backbone.View.extend({
             // else display error notification
             splat.utils.showNotice("Note: Please check the format of your image!", 'alert-danger');
         }
-		
+
 	},
 	imageRead: function(pictureFile, type) {
 		var self = this;
@@ -88,8 +88,8 @@ splat.Details = Backbone.View.extend({
 		reader.onload = function(event) {
             var targetImgElt = $('#detailsImage')[0];
             // reader.result is image data in base64 format
-            targetImgElt.src = reader.result;
-            self.model.set('poster', reader.result);
+            targetImgElt.src = self.resize(reader.result, type);
+            self.model.set('poster', self.resize(reader.result));
         };
 		reader.readAsDataURL(pictureFile);
 		// read image file
@@ -110,7 +110,7 @@ splat.Details = Backbone.View.extend({
 		this.pictureFile = ev.dataTransfer.files[0];
 		// only process image files
         // if the file type is image, read it
-        var Extension = this.pictureFile.type.substring(this.pictureFile.type.lastIndexOf('/') + 1).toLowerCase(); 
+        var Extension = this.pictureFile.type.substring(this.pictureFile.type.lastIndexOf('/') + 1).toLowerCase();
         if (Extension === "gif" || Extension === "png" || Extension === "bmp" || Extension === "jpeg" || Extension === "jpg"){
 			this.imageRead(this.pictureFile, this.pictureFile.type);
 		}
@@ -124,8 +124,8 @@ splat.Details = Backbone.View.extend({
 		var quality = quality || "0.95"; // tradeoff quality vs size
 		var image = new Image(), MAX_HEIGHT = 300, MAX_WIDTH = 450;
 		image.src = sourceImg;
-		image.height = image.height // ADD CODE to scale height
-		image.width = image.width // ADD CODE to scale height
+		image.height = MAX_HEIGHT // ADD CODE to scale height
+		image.width = MAX_WIDTH // ADD CODE to scale height
 		var canvas = document.createElement("canvas");
 		canvas.width = image.width; // scale canvas to match image
 		canvas.height = image.height;
