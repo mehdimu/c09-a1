@@ -66,7 +66,7 @@ splat.utils = {
 		// use jQuery to address input field by its
 		// name attribute
 		console.log('AddValidationError!');
-		var formgroup = $('#'+field).parent().parent();
+		var formgroup = $('#'+field).parent();
 		formgroup.addClass('has-error');
 		$('.help-block', formgroup).html(message);
 	},
@@ -75,7 +75,7 @@ splat.utils = {
 		// use jQuery to address input field by its
 		// name attribute
 		console.log('RemoveValidationError!');
-		var formgroup = $('#'+field).parent().parent();
+		var formgroup = $('#'+field).parent();
 		formgroup.removeClass('has-error');
 		$('.help-block', formgroup).html('');
 

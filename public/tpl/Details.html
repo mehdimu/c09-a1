@@ -2,98 +2,59 @@
 <!--<div class="Success" role="alert"></div>-->
     <div class="col-xs-6">  <!-- col 1 -->
         <div id="movieform">
+		<div class="editActions">
             <input type="button" id="save" name="save" class="btn btn-primary save" value="Save Changes" />
 			<input type="button" id="delete" name="delete" class="btn btn-danger delete" value="Delete Movie"/>
             </br></br>
+		</div>
+		<div class ="form-horizontal">
             <div class="form-group">
-                <label for="inputTitle" class="col-sm-2 control-label">Title</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="title" placeholder="e.g. Something" value="<%= title %>">
+                <label for="inputTitle" class="col-sm-3 control-label">Title</label>
+                    <input type="text" class="col-sm-9" name="title" id="title" placeholder="e.g. Something" value="<%= title %>">
                     <span class="help-block"></span>
-                </div>
             </div>
-				</br>
-				</br>
-				</br>
             <div class="form-group">
-				<label for="inputTitle" class="col-sm-2 control-label">Released</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="released" placeholder="Released" value="<%= released %>">
+				<label for="inputTitle" class="col-sm-3 control-label">Released</label>
+                    <input type="text" class="col-sm-9" id="released" placeholder="Released" value="<%= released %>">
                     <span class="help-block"></span>
-                </div>
             </div>
-				</br>
-				</br>
-				</br>
             <div class="form-group">
-				<label for="inputTitle" class="col-sm-2 control-label">Director</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="director" placeholder="e.g. Steven Speilberg" value='<%= director %>'>
+				<label for="inputTitle" class="col-sm-3 control-label">Director</label>
+                    <input type="text" class="col-sm-9" id="director" placeholder="e.g. Steven Speilberg" value='<%= director %>'>
                     <span class="help-block"></span>
-                </div>
             </div>
-				</br>
-				</br>
-				</br>
             <div class="form-group">
-				<label for="inputTitle" class="col-sm-2 control-label">Rating</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="rating" placeholder="e.g. G, PG, PG-13, R" value="<%= rating %>">
+				<label for="inputTitle" class="col-sm-3 control-label">Rating</label>
+                    <input type="text" class="col-sm-9" id="rating" placeholder="e.g. G, PG, PG-13, R" value="<%= rating %>">
                     <span class="help-block"></span>
-                </div>
             </div>
-				</br>
-				</br>
-				</br>
             <div class="form-group">
-				<label for="inputTitle" class="col-sm-2 control-label">Starring</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="starring" placeholder="e.g. Hugh Jackman, Ryan Reynolds" value="<%= starring %>">
+				<label for="inputTitle" class="col-sm-3 control-label">Starring</label>
+                    <input type="text" class="col-sm-9" id="starring" placeholder="e.g. Hugh Jackman, Ryan Reynolds" value="<%= starring %>">
                     <span class="help-block"></span>
-                </div>
             </div>
-				</br>
-				</br>
-				</br>
             <div class="form-group">
-				<label for="inputTitle" class="col-sm-2 control-label">Duration</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="duration" placeholder="122 minutes" value="<%= duration %>">
+				<label for="inputTitle" class="col-sm-3 control-label">Duration</label>
+                    <input type="text" class="col-sm-9" id="duration" placeholder="122 minutes" value="<%= duration %>">
                     <span class="help-block"></span>
-                </div>
             </div>
-				</br>
-				</br>
-				</br>
             <div class="form-group">
-				<label for="inputTitle" class="col-sm-2 control-label">Genre(s)</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="genre" placeholder="e.g. comedy, thriller, action" value="<%= genre %>">
+				<label for="inputTitle" class="col-sm-3 control-label">Genre(s)</label>
+                    <input type="text" class="col-sm-9" id="genre" placeholder="e.g. comedy, thriller, action" value="<%= genre %>">
                     <span class="help-block"></span>
-                </div>
             </div>
-				</br>
-				</br>
-				</br>
             <div class="form-group">
-				<label for="inputTitle" class="col-sm-2 control-label">Synopsis</label>
-                <div class="col-sm-10">
-                    <textarea name="synopsis" class="form-control" rows="5" id="synopsis" placeholder="Summary of the plot"><%= synopsis %></textarea>
+				<label for="inputTitle" class="col-sm-3 control-label">Synopsis</label>
+                    <textarea name="synopsis" class="col-sm-9" rows="5" id="synopsis" placeholder="Summary of the plot"><%= synopsis %></textarea>
                     <span class="help-block"></span>
-                </div>
             </div>
-			</br>
-				</br>
-				</br>
-
             <div class="form-group">
-				<label for="inputTitle" class="col-sm-2 control-label">Trailer URL</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="trailer" placeholder="e.g. https://www.archive.org" value="<%= trailer %>">
+				<label for="inputTitle" class="col-sm-3 control-label">Trailer URL</label>
+                    <input type="text" class="col-sm-9" id="trailer" placeholder="e.g. https://www.archive.org" value="<%= trailer %>">
                     <span class="help-block"></span>
-                </div>
             </div>
         </div>
+	</div>
     </div>  <!-- end column 1 -->
 
     <div class="col-xs-6">  <!-- col 2 -->
