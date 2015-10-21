@@ -14,7 +14,6 @@ and horizontally-right-aligned text. */
 
 .thumbnails{
 	padding-top: 50px;
-
 }
 
 
@@ -26,11 +25,11 @@ border-color: #25383C;
 font-size:80%;
 text-align:right;
 margin-right: 5px;
-background-color: black;
+background-color: white;
 border-radius: 4px;
 
 }
-.some_class_2{
+.caption{
   margin-left:0px;
   margin-right:15px;
 }
