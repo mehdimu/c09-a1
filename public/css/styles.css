@@ -1,14 +1,23 @@
 .Success{
 text-align:center;
 }
-/*For the Browse view, set a left-margin of 0px 
-and a right-margin of 15px on your thumbnail <li> elements. 
+/*For the Browse view, set a left-margin of 0px
+and a right-margin of 15px on your thumbnail <div> elements.
 For the individual Movie thumbnails, set a relative position,
- a border-width of 1px, border-radius of 4px, 
-border-color of #25383C, a right-margin of 5px, 
-text that is scaled to 80% of that of the parent element, 
+ a border-width of 1px, border-radius of 4px,
+border-color of #25383C, a right-margin of 5px,
+text that is scaled to 80% of that of the parent element,
 and horizontally-right-aligned text. */
 .thumbnail{
+
+}
+
+.thumbnails{
+	padding-top: 110px;
+
+}
+
+.some_class{
 position:relative;
 border-width: 1px;
 border-color: #25383C;
@@ -17,12 +26,11 @@ text-align:right;
 margin-right: 5px;
 background-color: black;
 border-radius: 4px;
-}
 
-.thumbnails{
-	padding-top: 110px;
-	margin-left:0px;
-	margin-right:15px;
+}
+.some_class_2{
+  margin-left:0px;
+  margin-right:15px;
 }
 .col-sm-9{
 color:grey;
@@ -51,7 +59,7 @@ white-space: nowrap;}
 	text-align: right;
 	font-family: Verdana;
 	font-size: 12px;
-	width:100%;	
+	width:100%;
 }
 
 #rowform{
@@ -87,7 +95,7 @@ white-space: nowrap;}
     font-size: 15px;
     text-align:left;
   }
-  
+
 .home-hero {
   background-image: url(../img/HJ_2.jpg);
   background-size:   cover;                      /* <------ */
@@ -105,14 +113,14 @@ white-space: nowrap;}
     font-size: 24px;
 	text-shadow: 1px 1px 1px black;
   }
-} 
+}
 
 .home-menu {
   font-size: 125%;
 }
 #mytext {
     position: relative;
-    top: 50%; 
+    top: 50%;
     transform: translateY(-50%);
     -webkit-transform: translateY(-50%);
 }
