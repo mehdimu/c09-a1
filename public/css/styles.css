@@ -13,9 +13,11 @@ and horizontally-right-aligned text. */
 }
 
 .thumbnails{
-	padding-top: 110px;
+	padding-top: 50px;
 
 }
+
+
 
 .some_class{
 position:relative;
@@ -37,8 +39,8 @@ color:grey;
 }
 
 #selectImage{
-float:right;
-text-align:right;
+/*float:right;*/
+/*text-align:right;*/
 }
 
 #picLabel{
