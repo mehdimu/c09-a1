@@ -61,9 +61,9 @@ splat.Details = Backbone.View.extend({
 	events:{
 		"click #save":  'test',
 		"click #delete": 'destroy',
-		"change #selectImage": 'selectImage',
 		"change input": 'change',
 		"change textarea": 'change',
+        "change #selectImage": 'selectImage',
 		"drop #detailsImage": 'dropHandler',
 		"dragover #detailsImage": 'dragoverHandler'
 	},
@@ -71,23 +71,26 @@ splat.Details = Backbone.View.extend({
 		// set object attribute for image uploader
 		this.pictureFile = event.target.files[0];
 		// if the file type is image, read it
-		if ( true//check if this.pictureFile is image...
-			) {
-			this.imageRead(this.pictureFile,
-			this.pictureFile.type);
+        var Extension = this.pictureFile.type.substring(this.pictureFile.type.lastIndexOf('/') + 1).toLowerCase(); 
+        if (Extension === "gif" || Extension === "png" || Extension === "bmp" || Extension === "jpeg" || Extension === "jpg"){
+			this.imageRead(this.pictureFile, this.pictureFile.type);
 		}
-		// else display error notification
+        else{
+            // else display error notification
+            splat.utils.showNotice("Note: Please check the format of your image!", 'alert-danger');
+        }
+		
 	},
 	imageRead: function(pictureFile, type) {
 		var self = this;
 		var reader = new FileReader();
 		// callback for when read operation is finished
 		reader.onload = function(event) {
-		var targetImgElt = $('#detailsImage')[0];
-		// reader.result is image data in base64 format
-		targetImgElt.src = reader.result;
-		self.model.set('poster', reader.result);
-		};
+            var targetImgElt = $('#detailsImage')[0];
+            // reader.result is image data in base64 format
+            targetImgElt.src = reader.result;
+            self.model.set('poster', reader.result);
+        };
 		reader.readAsDataURL(pictureFile);
 		// read image file
 	},
@@ -101,20 +104,20 @@ splat.Details = Backbone.View.extend({
 		event.originalEvent.dataTransfer.dropEffect = 'copy';
 	},
 	dropHandler: function (event) {
-		console.log("here2");
 		event.stopPropagation(); event.preventDefault();
 		var ev = event.originalEvent;
 		// set object attribute for use by uploadPicture
 		this.pictureFile = ev.dataTransfer.files[0];
 		// only process image files
-		if ( true
-		// check that file is image type...
-		) {
-		// Read image file and display in img tag
-		this.imageRead(this.pictureFile,
-		this.pictureFile.type);
+        // if the file type is image, read it
+        var Extension = this.pictureFile.type.substring(this.pictureFile.type.lastIndexOf('/') + 1).toLowerCase(); 
+        if (Extension === "gif" || Extension === "png" || Extension === "bmp" || Extension === "jpeg" || Extension === "jpg"){
+			this.imageRead(this.pictureFile, this.pictureFile.type);
 		}
-		// else display notification error
+        else{
+            // else display error notification
+            splat.utils.showNotice("Note: Please check the format of your image!", 'alert-danger');
+        }
 	},
 	resize: function(sourceImg, type, quality) {
 		var type = type || "image/jpeg"; // default MIME image type
