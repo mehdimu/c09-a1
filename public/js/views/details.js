@@ -124,6 +124,7 @@ splat.Details = Backbone.View.extend({
 		var quality = quality || "0.95"; // tradeoff quality vs size
 		var image = new Image(), MAX_HEIGHT = 300, MAX_WIDTH = 450;
 		var targetImgElt = targetImgElt;
+		var self = this;
 		image.onload = function() {
 			var targetImgElt = $('#detailsImage')[0];
 			image.height = MAX_HEIGHT // ADD CODE to scale height
@@ -134,6 +135,7 @@ splat.Details = Backbone.View.extend({
 			var ctx = canvas.getContext("2d"); // get 2D renderig context
 			ctx.drawImage(image,0,0, image.width, image.height); // render
 			targetImgElt.src = canvas.toDataURL(type, quality);
+			self.model.set('poster', canvas.toDataURL(type, quality));
 			// return canvas.toDataURL(type, quality);
 		}
 		image.src = sourceImg;

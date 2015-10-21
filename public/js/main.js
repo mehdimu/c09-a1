@@ -12,7 +12,7 @@ splat.AppRouter = Backbone.Router.extend({
         "": "home",
         "default": "home",
 		"about": "about",
-		"movies":"browse", 
+		"movies":"browse",
 		"movies/add": "moviesadd",
 		"movies/:id":"moviedit"
     },
@@ -35,7 +35,7 @@ splat.AppRouter = Backbone.Router.extend({
         // insert the rendered Home view element into the document DOM
         $('#content').html(this.homeView.render().el);
         selectMenuItem($('.home-menu'));
-		
+
     },
 	about: function() {
         // If the About view doesn't exist, instantiate one
@@ -51,19 +51,20 @@ splat.AppRouter = Backbone.Router.extend({
             this.moviesView = new splat.MovieView({collection:this.movies});
         }
         $('#content').html(this.moviesView.render().el);
-		selectMenuItem($('.browse-menu')); 
+		selectMenuItem($('.browse-menu'));
     },
     moviedit: function(id) {
         this.movieModel = this.movies.get(id);
         this.detailsView = new splat.Details({collection: this.movies, model: this.movieModel});
         $('#content').html(this.detailsView.render().el);
+        selectMenuItem($('.add-menu'));
     },
     moviesadd: function() {
         this.movie = new splat.Movie();
         this.detailsView = new splat.Details({collection: this.movies, model: this.movie});
         // insert the rendered Home view element into the document DOM
         $('#content').html(this.detailsView.render().el);
-		selectMenuItem($('.add-menu')); 
+		selectMenuItem($('.add-menu'));
     }
 });
 
