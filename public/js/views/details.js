@@ -86,10 +86,10 @@ splat.Details = Backbone.View.extend({
 		var reader = new FileReader();
 		// callback for when read operation is finished
 		reader.onload = function(event) {
-            var targetImgElt = $('#detailsImage')[0];
+
             // reader.result is image data in base64 format
-            targetImgElt.src = self.resize(reader.result, type);
-            self.model.set('poster', self.resize(reader.result));
+            self.resize(reader.result, type);
+            // self.model.set('poster', self.resize(reader.result));
         };
 		reader.readAsDataURL(pictureFile);
 		// read image file
@@ -119,19 +119,24 @@ splat.Details = Backbone.View.extend({
             splat.utils.showNotice("Note: Please check the format of your image!", 'alert-danger');
         }
 	},
-	resize: function(sourceImg, type, quality) {
+	resize: function(sourceImg, type, quality, targetImgElt) {
 		var type = type || "image/jpeg"; // default MIME image type
 		var quality = quality || "0.95"; // tradeoff quality vs size
 		var image = new Image(), MAX_HEIGHT = 300, MAX_WIDTH = 450;
+		var targetImgElt = targetImgElt;
+		image.onload = function() {
+			var targetImgElt = $('#detailsImage')[0];
+			image.height = MAX_HEIGHT // ADD CODE to scale height
+			image.width = MAX_WIDTH // ADD CODE to scale height
+			var canvas = document.createElement("canvas");
+			canvas.width = image.width; // scale canvas to match image
+			canvas.height = image.height;
+			var ctx = canvas.getContext("2d"); // get 2D renderig context
+			ctx.drawImage(image,0,0, image.width, image.height); // render
+			targetImgElt.src = canvas.toDataURL(type, quality);
+			// return canvas.toDataURL(type, quality);
+		}
 		image.src = sourceImg;
-		image.height = MAX_HEIGHT // ADD CODE to scale height
-		image.width = MAX_WIDTH // ADD CODE to scale height
-		var canvas = document.createElement("canvas");
-		canvas.width = image.width; // scale canvas to match image
-		canvas.height = image.height;
-		var ctx = canvas.getContext("2d"); // get 2D renderig context
-		ctx.drawImage(image,0,0, image.width, image.height); // render
-		return canvas.toDataURL(type, quality);
 	},
 	save: function() {
         if (this.model.isNew()) {
