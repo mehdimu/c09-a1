@@ -27,6 +27,15 @@ border-radius: 4px;
 .col-sm-9{
 color:grey;
 }
+
+#selectImage{
+float:right;
+text-align:right;
+}
+
+#picLabel{
+float:left;
+}
 #content{
 	color:white;
 	font-family: Verdana;
