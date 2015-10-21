@@ -1,7 +1,7 @@
 <div class="row" id="rowform">
 <!--<div class="Success" role="alert"></div>-->
     <div class="col-xs-6">  <!-- col 1 -->
-        <div id="movieform">
+	<div id="movieform">
 		<div class="editActions">
             <input type="button" id="save" name="save" class="btn btn-primary save" value="Save Changes" />
 			<input type="button" id="delete" name="delete" class="btn btn-danger delete" value="Delete Movie"/>
@@ -45,7 +45,7 @@
             </div>
             <div class="form-group">
 				<label for="inputTitle" class="col-sm-3 control-label">Synopsis</label>
-                    <textarea name="synopsis" class="col-sm-9" rows="5" id="synopsis" placeholder="Summary of the plot"><%= synopsis %></textarea>
+                    <textarea name="synopsis" class="col-sm-9" rows="5" id="synopsis" style="resize:none" placeholder="Summary of the plot"><%= synopsis %></textarea>
                     <span class="help-block"></span>
             </div>
             <div class="form-group">
