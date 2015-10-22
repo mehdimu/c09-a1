@@ -2,7 +2,7 @@
   <div class="thumbnail plain" title="some message">
     <div class="some_class">
         <video class="img-responsive" controls poster="<%= poster %>" >
-            <source src="<%= trailer %>" type="video/mp4"/>
+            <source src="<%= trailer %>" preload=none type="video/mp4"/>
             <!-- fallback -->
         </video>
         <a href="#movies/<%= _id %>" class="plain">
