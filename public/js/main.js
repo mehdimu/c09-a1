@@ -42,27 +42,31 @@ splat.AppRouter = Backbone.Router.extend({
         if (!this.aboutView) {
             this.aboutView = new splat.About();
         };
-        // insert the rendered Home view element into the document DOM
+        // insert the rendered about view element into the document DOM
         $('#content').html(this.aboutView.render().el);
         selectMenuItem($('.about-menu'));
     },
     browse: function() {
+		// If the Browse view doesn't exist, instantiate one
         if (!this.moviesView) {
             this.moviesView = new splat.MovieView({collection:this.movies});
         }
+		// insert the rendered movies view element into the document DOM
         $('#content').html(this.moviesView.render().el);
 		selectMenuItem($('.browse-menu'));
     },
     moviedit: function(id) {
+		// Find the details view with the specified id
         this.movieModel = this.movies.get(id);
         this.detailsView = new splat.Details({collection: this.movies, model: this.movieModel});
+		// insert the rendered Detail view element into the document DOM
         $('#content').html(this.detailsView.render().el);
         selectMenuItem($('.add-menu'));
     },
     moviesadd: function() {
         this.movie = new splat.Movie();
         this.detailsView = new splat.Details({collection: this.movies, model: this.movie});
-        // insert the rendered Home view element into the document DOM
+        // insert the rendered Detail view element into the document DOM
         $('#content').html(this.detailsView.render().el);
 		selectMenuItem($('.add-menu'));
     }
@@ -71,6 +75,7 @@ splat.AppRouter = Backbone.Router.extend({
 // Load HTML templates for Home, Header, About views, and when
 // template loading is complete, instantiate a Backbone router
 // with history.
+//Load the MovieThumb for the Browse View
 splat.movieThumbLoad = $.get('tpl/MovieThumb.html');
 splat.movieThumbLoad.done(function(markup) {
             splat.markup = markup;

@@ -42,16 +42,16 @@ splat.Details = Backbone.View.extend({
 		var problem = false;
 		for(var k in list) {
 			 var check = this.model.validateItem(list[k]);
-			 if (check.isValid){
+			 if (check.isValid){ //There are no problems in the form
 				splat.utils.removeValidationError(list[k]);
 			}
-			else {
+			else { //Some errors found
 				splat.utils.addValidationError(list[k], check.message);
 				problem = true;
 				break;
 			}
 		}
-		if (!problem){
+		if (!problem){ //If no errors are found, save the form
 			this.save();
 		}
 
@@ -123,8 +123,8 @@ splat.Details = Backbone.View.extend({
 		var self = this;
 		image.onload = function() { //picture needs to be available on first attempt
 			var targetImgElt = $('#detailsImage')[0];
-			image.height = MAX_HEIGHT // ADD CODE to scale height
-			image.width = MAX_WIDTH // ADD CODE to scale height
+			image.height = MAX_HEIGHT // scale height
+			image.width = MAX_WIDTH // scale height
 			var canvas = document.createElement("canvas");
 			canvas.width = image.width; // scale canvas to match image
 			canvas.height = image.height;
@@ -133,9 +133,10 @@ splat.Details = Backbone.View.extend({
 			targetImgElt.src = canvas.toDataURL(type, quality);
 			self.model.set('poster', canvas.toDataURL(type, quality));
 		}
-		image.src = sourceImg;
+		image.src = sourceImg; //Get the source
 	},
 	save: function() {
+		//A brand new model
         if (this.model.isNew()) {
             this.collection.create(
                 {title: $('#title').val(),
@@ -161,6 +162,7 @@ splat.Details = Backbone.View.extend({
 						});
             }
         else {
+		//Updating a model
         this.model.save(
             {title: $('#title').val(),
 		released: $('#released').val(),
@@ -190,7 +192,7 @@ splat.Details = Backbone.View.extend({
 		this.model.destroy({
 			wait: true,  // don't destroy client model until server responds
 			success: function(model, response) {
-                        splat.app.navigate('#movies', {replace:true, trigger:true});
+                    splat.app.navigate('#movies', {replace:true, trigger:true});
 					splat.utils.showNotice("Movie deleted", 'alert-danger');
 			},
 			error: function(model, response) {

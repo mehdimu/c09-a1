@@ -13,9 +13,4 @@ splat.Movies = Backbone.Collection.extend({
     localStorage: new Backbone.LocalStorage('splat')
 });
 
-//var MoviesColl = new splat.Movies;
-
-//window.c = MoviesColl;
-
-
 

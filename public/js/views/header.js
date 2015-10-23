@@ -17,7 +17,7 @@ splat.Header = Backbone.View.extend({
 });
 
 function selectMenuItem(menuItem) {
-	//menuItem.addClass('active').siblings().removeClass("active");
+	//Highlight the correct menuItem
 	$('.active').removeClass('active');
 	menuItem.addClass('active');
 }
