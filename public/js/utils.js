@@ -50,8 +50,9 @@ splat.utils = {
         $.when.apply(null, deferreds).done(callback);
     },
 	showNotice: function(msg, className){
+        // use jQuery to address input field by its
+		// selector attribute
         var el = $('.Success');
-        //el.removeClass(className);
         el.show();
         el.text(msg);
         el.addClass(className);
@@ -60,12 +61,14 @@ splat.utils = {
 		});
 	},
 	hideNotice: function(){
-		//var el = $('.Success');
+        // use jQuery to address input field by its
+		// selector attribute
+		var el = $('.Success');
+        el.stop();
     },
 	addValidationError: function(field, message) {
 		// use jQuery to address input field by its
 		// name attribute
-
 		var formgroup = $('#'+field).parent();
 		formgroup.addClass('has-error');
 		$('.help-block', formgroup).html(message);
@@ -74,11 +77,10 @@ splat.utils = {
 		// similar to above
 		// use jQuery to address input field by its
 		// name attribute
-
 		var formgroup = $('#'+field).parent();
 		formgroup.removeClass('has-error');
 		$('.help-block', formgroup).html('');
 
 	}
 
-	};
+};

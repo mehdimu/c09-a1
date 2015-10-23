@@ -34,15 +34,13 @@ splat.Details = Backbone.View.extend({
 		else{
 			splat.utils.addValidationError(event.target.id, check.message);
 		}
-		//check.isValid ? splat.utils.removeValidationError(event.target.id) : splat.utils.addValidationError(event.target.id, check.message);
 
 	},
 	test: function(){
-		// Run validation rule on changed item
+		// Run validation rule on all items
 		var list = ['title','released','director','starring','rating','duration','genre','synopsis','trailer'];
 		var problem = false;
 		for(var k in list) {
-			 console.log(list[k]);
 			 var check = this.model.validateItem(list[k]);
 			 if (check.isValid){
 				splat.utils.removeValidationError(list[k]);
@@ -86,10 +84,8 @@ splat.Details = Backbone.View.extend({
 		var reader = new FileReader();
 		// callback for when read operation is finished
 		reader.onload = function(event) {
-
-            // reader.result is image data in base64 format
+            //call resize and do all the work in that function
             self.resize(reader.result, type);
-            // self.model.set('poster', self.resize(reader.result));
         };
 		reader.readAsDataURL(pictureFile);
 		// read image file
@@ -125,7 +121,7 @@ splat.Details = Backbone.View.extend({
 		var image = new Image(), MAX_HEIGHT = 300, MAX_WIDTH = 450;
 		var targetImgElt = targetImgElt;
 		var self = this;
-		image.onload = function() {
+		image.onload = function() { //picture needs to be available on first attempt
 			var targetImgElt = $('#detailsImage')[0];
 			image.height = MAX_HEIGHT // ADD CODE to scale height
 			image.width = MAX_WIDTH // ADD CODE to scale height
@@ -136,7 +132,6 @@ splat.Details = Backbone.View.extend({
 			ctx.drawImage(image,0,0, image.width, image.height); // render
 			targetImgElt.src = canvas.toDataURL(type, quality);
 			self.model.set('poster', canvas.toDataURL(type, quality));
-			// return canvas.toDataURL(type, quality);
 		}
 		image.src = sourceImg;
 	},
@@ -167,8 +162,6 @@ splat.Details = Backbone.View.extend({
             }
         else {
         this.model.save(
-//	wait: true,  // don't destroy client model until server responds
-//        this.collection.create(
             {title: $('#title').val(),
 		released: $('#released').val(),
 		director: $('#director').val(),

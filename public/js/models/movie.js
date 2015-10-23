@@ -26,7 +26,6 @@ splat.Movie = Backbone.Model.extend({
 			this.validators[key](this.get(key))
 			: {isValid: true};
 	},
-	//this.validators *ali*
 	validators:{
 		title: function(value) {
 			var titleRegex = /^(((([a-zA-Z0-9]+)([\s\,\.\?\-\'\*]*))+)|(([\s\,\.\?\-\'\*]*)([a-zA-Z0-9]+)([\s\,\.\?\-\'\*]*))+)$/;
@@ -68,8 +67,6 @@ splat.Movie = Backbone.Model.extend({
 			}
 		},
 		duration: function(value){
-			// if a validator is defined on this key
-			// test it, else defaults to valid
 			var durationRegex = /^([0-9]|[0-9][0-9]|[0-9][0-9][0-9])$/
 			return (value &&
 				durationRegex.test(value)) ?
@@ -91,23 +88,8 @@ splat.Movie = Backbone.Model.extend({
 				: {isValid: false, message: "Please write something"}
 		},
 		freshTotal: function(value){
-		// if a validator is defined on this key
-			// test it, else defaults to valid
-			/*var freshRegex = /^\+?0|[1-9][0-9]*$/
-			return (value &&
-			freshRegex.test(value)) ?
-				{isValid: true}
-				: {isValid: false, message: "Only non-negative integers"}*/
 		},
 		freshVotes: function(value){
-			// if a validator is defined on this key
-			// test it, else defaults to valid
-			/*supposed to leave it for now
-			var freshRegex = /^\+?0|[1-9][0-9]*$/
-			return (value &&
-			freshRegex.test(value)) ?
-				{isValid: true}
-				: {isValid: false, message: "Only non-negative integers"}*/
 		},
 		trailer: function(value){
 			if (value === "" || value === null)
@@ -115,7 +97,7 @@ splat.Movie = Backbone.Model.extend({
 					return{isValid: true};
 				}
 			else{
-				var trailerRegex = /^(https|http)?:\/\/(www\.)?(\w|(\.\w))+(\/|\w)*(\/|\#)?(\w|\.)+(\/)?$/
+				var trailerRegex = /^(https|http)?:\/\/(www\.)?(\w|(\.\w))+(\/|\w)*(\/|\#)?(\w|\-|\.|\/|\d)+(\/)?$/
 				return( value &&
 					trailerRegex.test(value)) ?
 					{isValid: true}
@@ -124,11 +106,6 @@ splat.Movie = Backbone.Model.extend({
 		},
 
 		dated: function(value){
-			// if a validator is defined on this key
-			// test it, else defaults to valid
-			/*return (this.validators.dated[value]) ?
-			this.validators.dated[value](this.get(value))
-			: {isValid: true};*/
 		}
 	},
 

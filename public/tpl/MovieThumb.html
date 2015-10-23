@@ -1,13 +1,13 @@
 <div class="thumbnails col-lg-2 col-md-3 col-sm-4 col-xs-6 moviethumb">
   <div class="thumbnail plain" title="some message">
     <div class="some_class">
-        <video class="img-responsive" controls poster="<%= poster %>" >
-            <source src="<%= trailer %>" preload=none type="video/mp4"/>
+        <video class="img-responsive" preload=none controls poster="<%= poster %>" >
+            <source src="<%= trailer %>" type="video/mp4"/>
             <!-- fallback -->
         </video>
         <a href="#movies/<%= _id %>" class="plain">
           <div class="caption">
-              <b><%= title %></b> (<%= released %>) <br/>
+              <b><font class="title-font"><%= title %></font></b> (<%= released %>) <br/>
               <b>Directed by:</b> <%= director %> <br/>
               <b>Starring: </b><%= starring %> <br/>
               <b>Genres: </b><%= genre %>  <br/>
