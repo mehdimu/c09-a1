@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>movie.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../../doc-style.css" />
+  <script src="../../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../../", thisFile = "courses/courses/cscc09f15/mehdimu1/c09-a1//js/models/movie.js", defaultSidebar = true;
+  </script>
+  <script src="../../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>movie.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+<p>catch simple errors</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="s2">&quot;use strict&quot;</span><span class="p">;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<p>declare splat-app namespace if it doesn't already exist</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">splat</span> <span class="o">=</span>  <span class="nx">splat</span> <span class="o">||</span> <span class="p">{};</span>
+
+<span class="nx">splat</span><span class="p">.</span><span class="nx">Movie</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+  <span class="nx">defaults</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">title</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nx">released</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nx">director</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nx">starring</span><span class="o">:</span> <span class="p">[],</span>
+    <span class="nx">rating</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nx">duration</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nx">genre</span><span class="o">:</span> <span class="p">[],</span>
+    <span class="nx">synopsis</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nx">freshtTotal</span><span class="o">:</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="nx">freshVotes</span><span class="o">:</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="nx">trailer</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nx">poster</span><span class="o">:</span> <span class="s2">&quot;/img/poster.jpeg&quot;</span><span class="p">,</span>
+    <span class="nx">dated</span><span class="o">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span>
+  <span class="p">},</span>
+
+  <span class="nx">validateItem</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">validators</span><span class="p">[</span><span class="nx">key</span><span class="p">])</span> <span class="o">?</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">validators</span><span class="p">[</span><span class="nx">key</span><span class="p">](</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">key</span><span class="p">))</span>
+      <span class="o">:</span> <span class="p">{</span><span class="nx">isValid</span><span class="o">:</span> <span class="kc">true</span><span class="p">};</span>
+  <span class="p">},</span>
+  <span class="nx">validators</span><span class="o">:</span><span class="p">{</span> <span class="c1">//For each attribute, give it rules for checking </span>
+    <span class="nx">title</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<p>Verifying title is valid with specified regex</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+      <span class="kd">var</span> <span class="nx">titleRegex</span> <span class="o">=</span> <span class="sr">/^(((([a-zA-Z0-9]+)([\s\,\.\?\-\&#39;\*]*))+)|(([\s\,\.\?\-\&#39;\*]*)([a-zA-Z0-9]+)([\s\,\.\?\-\&#39;\*]*))+)$/</span><span class="p">;</span>
+      <span class="k">return</span> <span class="p">(</span><span class="nx">value</span> <span class="o">&amp;&amp;</span>
+        <span class="nx">titleRegex</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span> <span class="o">?</span>
+        <span class="p">{</span><span class="nx">isValid</span><span class="o">:</span> <span class="kc">true</span><span class="p">}</span>
+        <span class="o">:</span> <span class="p">{</span><span class="nx">isValid</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">message</span><span class="o">:</span> <span class="s2">&quot;Only 1 or more letters-digits-spaces allowed&quot;</span><span class="p">};</span>
+    <span class="p">},</span>
+
+    <span class="nx">director</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
+</div>
+<p>Verifying director is valid with specified regex</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+      <span class="kd">var</span> <span class="nx">directorRegex</span> <span class="o">=</span> <span class="sr">/^(((([a-zA-Z0-9]+)([\s\,\.\?\-\&#39;\*]*))+)|(([\s\,\.\?\-\&#39;\*]*)([a-zA-Z0-9]+)([\s\,\.\?\-\&#39;\*]*))+)$/</span><span class="p">;</span>
+      <span class="k">return</span> <span class="p">(</span><span class="nx">value</span> <span class="o">&amp;&amp;</span>
+        <span class="nx">directorRegex</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span> <span class="o">?</span>
+        <span class="p">{</span><span class="nx">isValid</span><span class="o">:</span> <span class="kc">true</span><span class="p">}</span>
+        <span class="o">:</span> <span class="p">{</span><span class="nx">isValid</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">message</span><span class="o">:</span> <span class="s2">&quot;Only 1 or more letters-digits-spaces allowed&quot;</span><span class="p">};</span>
+    <span class="p">},</span>
+    <span class="nx">released</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">){</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
+</div>
+<p>Verifying released is valid with specified regex</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+      <span class="kd">var</span> <span class="nx">releasedRegex</span> <span class="o">=</span> <span class="sr">/^(19[1-9]\d|200\d|201[0-6])$/</span>
+      <span class="k">return</span> <span class="p">(</span><span class="nx">value</span> <span class="o">&amp;&amp;</span>
+        <span class="nx">releasedRegex</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span> <span class="o">?</span>
+        <span class="p">{</span><span class="nx">isValid</span><span class="o">:</span> <span class="kc">true</span><span class="p">}</span>
+        <span class="o">:</span> <span class="p">{</span><span class="nx">isValid</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">message</span><span class="o">:</span> <span class="s2">&quot;Only dates between 1910-2016 allowed&quot;</span><span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nx">starring</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">){</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+</div>
+<p>Verifying starring is valid with specified regex</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+      <span class="kd">var</span> <span class="nx">starRegex</span> <span class="o">=</span> <span class="sr">/^(?:[a-zA-Z0-9-,.&#39;&quot;\s]*(?:\s*[a-zA-Z0-9-,.&#39;&quot;\s]*)*)\s*(?:,\s*(?:[a-zA-Z0-9-,.&#39;&quot;\s]*(?:\s*[a-zA-Z0-9-,.&#39;&quot;\s]*)*))*$/</span>
+      <span class="k">return</span> <span class="p">(</span><span class="nx">value</span> <span class="o">&amp;&amp;</span>
+        <span class="nx">starRegex</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span> <span class="o">?</span>
+        <span class="p">{</span><span class="nx">isValid</span><span class="o">:</span> <span class="kc">true</span><span class="p">}</span>
+        <span class="o">:</span> <span class="p">{</span><span class="nx">isValid</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">message</span><span class="o">:</span> <span class="s2">&quot;Only white space comma seperated words are allowed&quot;</span><span class="p">}</span>
+
+    <span class="p">},</span>
+    <span class="nx">rating</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">){</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+</div>
+<p>Verifying rating is valid with specified regex
+G, PG, PG-13, R, NC-17, NR</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">value</span> <span class="o">===</span> <span class="s2">&quot;PG-13&quot;</span> <span class="o">||</span> <span class="nx">value</span> <span class="o">===</span> <span class="s2">&quot;NC-17&quot;</span> <span class="o">||</span> <span class="nx">value</span> <span class="o">===</span> <span class="s2">&quot;PG&quot;</span> <span class="o">||</span> <span class="nx">value</span> <span class="o">===</span> <span class="s2">&quot;G&quot;</span> <span class="o">||</span> <span class="nx">value</span><span class="o">===</span><span class="s2">&quot;R&quot;</span> <span class="o">||</span><span class="nx">value</span><span class="o">===</span><span class="s2">&quot;NR&quot;</span><span class="p">){</span>
+        <span class="k">return</span><span class="p">{</span><span class="nx">isValid</span><span class="o">:</span><span class="kc">true</span><span class="p">}</span>
+       <span class="p">}</span>
+      <span class="k">else</span><span class="p">{</span>
+        <span class="k">return</span><span class="p">{</span><span class="nx">isValid</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span><span class="nx">message</span><span class="o">:</span> <span class="s2">&quot;Only G, PG, PG-13, R, NC-17, NR are allowed&quot;</span><span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nx">duration</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">){</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+</div>
+<p>Verifying duration is valid with specified regex</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+      <span class="kd">var</span> <span class="nx">durationRegex</span> <span class="o">=</span> <span class="sr">/^([0-9]|[0-9][0-9]|[0-9][0-9][0-9])$/</span>
+      <span class="k">return</span> <span class="p">(</span><span class="nx">value</span> <span class="o">&amp;&amp;</span>
+        <span class="nx">durationRegex</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span> <span class="o">?</span>
+        <span class="p">{</span><span class="nx">isValid</span><span class="o">:</span> <span class="kc">true</span><span class="p">}</span>
+        <span class="o">:</span> <span class="p">{</span><span class="nx">isValid</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">message</span><span class="o">:</span> <span class="s2">&quot;Only 0-999 allowed&quot;</span><span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nx">genre</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">){</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+</div>
+<p>Verifying genre is valid with specified regex</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+      <span class="kd">var</span> <span class="nx">genreRegex</span> <span class="o">=</span> <span class="sr">/^(?:[a-zA-Z0-9-,.&#39;&quot;\s]*(?:\s*[a-zA-Z0-9-,.&#39;&quot;\s]*)*)\s*(?:,\s*(?:[a-zA-Z0-9-,.&#39;&quot;\s]*(?:\s*[a-zA-Z0-9-,.&#39;&quot;\s]*)*))*$/</span>
+      <span class="k">return</span> <span class="p">(</span><span class="nx">value</span> <span class="o">&amp;&amp;</span>
+        <span class="nx">genreRegex</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span> <span class="o">?</span>
+        <span class="p">{</span><span class="nx">isValid</span><span class="o">:</span> <span class="kc">true</span><span class="p">}</span>
+        <span class="o">:</span> <span class="p">{</span><span class="nx">isValid</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">message</span><span class="o">:</span> <span class="s2">&quot;Only white space comma seperated words are allowed&quot;</span><span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nx">synopsis</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">){</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
+</div>
+<p>Verifying synopsis is valid with specified regex</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+      <span class="kd">var</span> <span class="nx">synopsisRegex</span> <span class="o">=</span> <span class="sr">/^(\w.|.\w|.)+$/</span>
+      <span class="k">return</span> <span class="p">(</span><span class="nx">value</span> <span class="o">&amp;&amp;</span>
+        <span class="nx">synopsisRegex</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span> <span class="o">?</span>
+        <span class="p">{</span><span class="nx">isValid</span><span class="o">:</span> <span class="kc">true</span><span class="p">}</span>
+        <span class="o">:</span> <span class="p">{</span><span class="nx">isValid</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">message</span><span class="o">:</span> <span class="s2">&quot;Please write something&quot;</span><span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nx">freshTotal</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">){</span>
+    <span class="p">},</span>
+    <span class="nx">freshVotes</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">){</span>
+    <span class="p">},</span>
+    <span class="nx">trailer</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">){</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-11" id="section-11">&#182;</a>
+</div>
+<p>Verifying trailer is valid with specified regex</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">value</span> <span class="o">===</span> <span class="s2">&quot;&quot;</span> <span class="o">||</span> <span class="nx">value</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span>
+        <span class="p">{</span>
+          <span class="k">return</span><span class="p">{</span><span class="nx">isValid</span><span class="o">:</span> <span class="kc">true</span><span class="p">};</span>
+        <span class="p">}</span>
+      <span class="k">else</span><span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">trailerRegex</span> <span class="o">=</span> <span class="sr">/^(https|http)?:\/\/(www\.)?(\w|(\.\w))+(\/|\w)*(\/|\#)?(\w|\-|\.|\/|\d)+(\/)?$/</span>
+        <span class="k">return</span><span class="p">(</span> <span class="nx">value</span> <span class="o">&amp;&amp;</span>
+          <span class="nx">trailerRegex</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span> <span class="o">?</span>
+          <span class="p">{</span><span class="nx">isValid</span><span class="o">:</span> <span class="kc">true</span><span class="p">}</span>
+          <span class="o">:</span> <span class="p">{</span><span class="nx">isValid</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">message</span><span class="o">:</span> <span class="s2">&quot;Only properly formatted urls allowed&quot;</span><span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="nx">dated</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">){</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+
+  <span class="nx">idAttribute</span><span class="o">:</span> <span class="s2">&quot;_id&quot;</span>
+
+<span class="p">})</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

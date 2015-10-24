@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>details.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../../doc-style.css" />
+  <script src="../../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../../", thisFile = "courses/courses/cscc09f15/mehdimu1/c09-a1//js/views/details.js", defaultSidebar = true;
+  </script>
+  <script src="../../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>details.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+<p>catch simple errors</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="s2">&quot;use strict&quot;</span><span class="p">;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<p>declare splat-app namespace if it doesn't already exist</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">splat</span> <span class="o">=</span>  <span class="nx">splat</span> <span class="o">||</span> <span class="p">{};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<p>note View-name (Home) matches name of template file Home.html</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">splat</span><span class="p">.</span><span class="nx">Details</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
+</div>
+<p>render the View</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
+</div>
+<p>set the view element ($el) HTML content using its template</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">attributes</span><span class="p">));</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">;</span>    <span class="c1">// support method chaining</span>
+    <span class="p">},</span>
+  <span class="nx">change</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+</div>
+<p>Remove any existing alert message(s)</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">splat</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">hideNotice</span><span class="p">();</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+</div>
+<p>object to hold form-field name:value pairs</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">changeObj</span> <span class="o">=</span> <span class="p">{};</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+</div>
+<p>Add change value to changeObj; change event is
+triggered once for each changed field value</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">changeObj</span><span class="p">[</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+</div>
+<p>reflect changes back to the model</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">changeObj</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
+</div>
+<p>Run validation rule on changed item</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">check</span> <span class="o">=</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">validateItem</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-11" id="section-11">&#182;</a>
+</div>
+<p>check is tuple <isValid: Boolean, message: String></p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">check</span><span class="p">.</span><span class="nx">isValid</span><span class="p">){</span>
+      <span class="nx">splat</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">removeValidationError</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+      <span class="nx">splat</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">showNotice</span><span class="p">(</span><span class="s2">&quot;Note: Changes made! Remember to click save!&quot;</span><span class="p">,</span> <span class="s1">&#39;alert-info&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span><span class="p">{</span>
+      <span class="nx">splat</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">addValidationError</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="nx">check</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+    <span class="p">}</span>
+
+  <span class="p">},</span>
+  <span class="nx">test</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-12" id="section-12">&#182;</a>
+</div>
+<p>Run validation rule on all items</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">,</span><span class="s1">&#39;released&#39;</span><span class="p">,</span><span class="s1">&#39;director&#39;</span><span class="p">,</span><span class="s1">&#39;starring&#39;</span><span class="p">,</span><span class="s1">&#39;rating&#39;</span><span class="p">,</span><span class="s1">&#39;duration&#39;</span><span class="p">,</span><span class="s1">&#39;genre&#39;</span><span class="p">,</span><span class="s1">&#39;synopsis&#39;</span><span class="p">,</span><span class="s1">&#39;trailer&#39;</span><span class="p">];</span>
+    <span class="kd">var</span> <span class="nx">problem</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">k</span> <span class="k">in</span> <span class="nx">list</span><span class="p">)</span> <span class="p">{</span>
+       <span class="kd">var</span> <span class="nx">check</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">validateItem</span><span class="p">(</span><span class="nx">list</span><span class="p">[</span><span class="nx">k</span><span class="p">]);</span>
+       <span class="k">if</span> <span class="p">(</span><span class="nx">check</span><span class="p">.</span><span class="nx">isValid</span><span class="p">){</span> <span class="c1">//There are no problems in the form</span>
+        <span class="nx">splat</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">removeValidationError</span><span class="p">(</span><span class="nx">list</span><span class="p">[</span><span class="nx">k</span><span class="p">]);</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="p">{</span> <span class="c1">//Some errors found</span>
+        <span class="nx">splat</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">addValidationError</span><span class="p">(</span><span class="nx">list</span><span class="p">[</span><span class="nx">k</span><span class="p">],</span> <span class="nx">check</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+        <span class="nx">problem</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">problem</span><span class="p">){</span> <span class="c1">//If no errors are found, save the form</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+    <span class="p">}</span>
+
+  <span class="p">},</span>
+  <span class="nx">events</span><span class="o">:</span><span class="p">{</span>
+    <span class="s2">&quot;click #save&quot;</span><span class="o">:</span>  <span class="s1">&#39;test&#39;</span><span class="p">,</span>
+    <span class="s2">&quot;click #delete&quot;</span><span class="o">:</span> <span class="s1">&#39;destroy&#39;</span><span class="p">,</span>
+    <span class="s2">&quot;change input&quot;</span><span class="o">:</span> <span class="s1">&#39;change&#39;</span><span class="p">,</span>
+    <span class="s2">&quot;change textarea&quot;</span><span class="o">:</span> <span class="s1">&#39;change&#39;</span><span class="p">,</span>
+        <span class="s2">&quot;change #selectImage&quot;</span><span class="o">:</span> <span class="s1">&#39;selectImage&#39;</span><span class="p">,</span>
+    <span class="s2">&quot;drop #detailsImage&quot;</span><span class="o">:</span> <span class="s1">&#39;dropHandler&#39;</span><span class="p">,</span>
+    <span class="s2">&quot;dragover #detailsImage&quot;</span><span class="o">:</span> <span class="s1">&#39;dragoverHandler&#39;</span>
+  <span class="p">},</span>
+  <span class="nx">selectImage</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-13" id="section-13">&#182;</a>
+</div>
+<p>set object attribute for image uploader</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">this</span><span class="p">.</span><span class="nx">pictureFile</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">files</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-14" id="section-14">&#182;</a>
+</div>
+<p>if the file type is image, read it</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="kd">var</span> <span class="nx">Extension</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">pictureFile</span><span class="p">.</span><span class="nx">type</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">pictureFile</span><span class="p">.</span><span class="nx">type</span><span class="p">.</span><span class="nx">lastIndexOf</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">).</span><span class="nx">toLowerCase</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">Extension</span> <span class="o">===</span> <span class="s2">&quot;gif&quot;</span> <span class="o">||</span> <span class="nx">Extension</span> <span class="o">===</span> <span class="s2">&quot;png&quot;</span> <span class="o">||</span> <span class="nx">Extension</span> <span class="o">===</span> <span class="s2">&quot;bmp&quot;</span> <span class="o">||</span> <span class="nx">Extension</span> <span class="o">===</span> <span class="s2">&quot;jpeg&quot;</span> <span class="o">||</span> <span class="nx">Extension</span> <span class="o">===</span> <span class="s2">&quot;jpg&quot;</span><span class="p">){</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">imageRead</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">pictureFile</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">pictureFile</span><span class="p">.</span><span class="nx">type</span><span class="p">);</span>
+    <span class="p">}</span>
+        <span class="k">else</span><span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-15" id="section-15">&#182;</a>
+</div>
+<p>else display error notification</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="nx">splat</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">showNotice</span><span class="p">(</span><span class="s2">&quot;Note: Please check the format of your image!&quot;</span><span class="p">,</span> <span class="s1">&#39;alert-danger&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+
+  <span class="p">},</span>
+  <span class="nx">imageRead</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">pictureFile</span><span class="p">,</span> <span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FileReader</span><span class="p">();</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-16" id="section-16">&#182;</a>
+</div>
+<p>callback for when read operation is finished</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">reader</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-17" id="section-17">&#182;</a>
+</div>
+<p>call resize and do all the work in that function</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="nx">self</span><span class="p">.</span><span class="nx">resize</span><span class="p">(</span><span class="nx">reader</span><span class="p">.</span><span class="nx">result</span><span class="p">,</span> <span class="nx">type</span><span class="p">);</span>
+        <span class="p">};</span>
+    <span class="nx">reader</span><span class="p">.</span><span class="nx">readAsDataURL</span><span class="p">(</span><span class="nx">pictureFile</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-18" id="section-18">&#182;</a>
+</div>
+<p>read image file</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+  <span class="p">},</span>
+  <span class="nx">dragoverHandler</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-19" id="section-19">&#182;</a>
+</div>
+<p>don't let parent element catch event</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">event</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-20" id="section-20">&#182;</a>
+</div>
+<p>prevent default to enable drop event</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-21" id="section-21">&#182;</a>
+</div>
+<p>jQuery event doesn’t have dataTransfer
+field - so use originalEvent</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">event</span><span class="p">.</span><span class="nx">originalEvent</span><span class="p">.</span><span class="nx">dataTransfer</span><span class="p">.</span><span class="nx">dropEffect</span> <span class="o">=</span> <span class="s1">&#39;copy&#39;</span><span class="p">;</span>
+  <span class="p">},</span>
+  <span class="nx">dropHandler</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">event</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();</span> <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">ev</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">originalEvent</span><span class="p">;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-22" id="section-22">&#182;</a>
+</div>
+<p>set object attribute for use by uploadPicture</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">this</span><span class="p">.</span><span class="nx">pictureFile</span> <span class="o">=</span> <span class="nx">ev</span><span class="p">.</span><span class="nx">dataTransfer</span><span class="p">.</span><span class="nx">files</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-23" id="section-23">&#182;</a>
+</div>
+<p>only process image files
+if the file type is image, read it</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="kd">var</span> <span class="nx">Extension</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">pictureFile</span><span class="p">.</span><span class="nx">type</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">pictureFile</span><span class="p">.</span><span class="nx">type</span><span class="p">.</span><span class="nx">lastIndexOf</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">).</span><span class="nx">toLowerCase</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">Extension</span> <span class="o">===</span> <span class="s2">&quot;gif&quot;</span> <span class="o">||</span> <span class="nx">Extension</span> <span class="o">===</span> <span class="s2">&quot;png&quot;</span> <span class="o">||</span> <span class="nx">Extension</span> <span class="o">===</span> <span class="s2">&quot;bmp&quot;</span> <span class="o">||</span> <span class="nx">Extension</span> <span class="o">===</span> <span class="s2">&quot;jpeg&quot;</span> <span class="o">||</span> <span class="nx">Extension</span> <span class="o">===</span> <span class="s2">&quot;jpg&quot;</span><span class="p">){</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">imageRead</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">pictureFile</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">pictureFile</span><span class="p">.</span><span class="nx">type</span><span class="p">);</span>
+    <span class="p">}</span>
+        <span class="k">else</span><span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-24" id="section-24">&#182;</a>
+</div>
+<p>else display error notification</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="nx">splat</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">showNotice</span><span class="p">(</span><span class="s2">&quot;Note: Please check the format of your image!&quot;</span><span class="p">,</span> <span class="s1">&#39;alert-danger&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nx">resize</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">sourceImg</span><span class="p">,</span> <span class="nx">type</span><span class="p">,</span> <span class="nx">quality</span><span class="p">,</span> <span class="nx">targetImgElt</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">type</span> <span class="o">=</span> <span class="nx">type</span> <span class="o">||</span> <span class="s2">&quot;image/jpeg&quot;</span><span class="p">;</span> <span class="c1">// default MIME image type</span>
+    <span class="kd">var</span> <span class="nx">quality</span> <span class="o">=</span> <span class="nx">quality</span> <span class="o">||</span> <span class="s2">&quot;0.95&quot;</span><span class="p">;</span> <span class="c1">// tradeoff quality vs size</span>
+    <span class="kd">var</span> <span class="nx">image</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Image</span><span class="p">(),</span> <span class="nx">MAX_HEIGHT</span> <span class="o">=</span> <span class="mi">300</span><span class="p">,</span> <span class="nx">MAX_WIDTH</span> <span class="o">=</span> <span class="mi">450</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">targetImgElt</span> <span class="o">=</span> <span class="nx">targetImgElt</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="nx">image</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="c1">//picture needs to be available on first attempt</span>
+      <span class="kd">var</span> <span class="nx">targetImgElt</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#detailsImage&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+      <span class="nx">image</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">MAX_HEIGHT</span> <span class="c1">// scale height</span>
+      <span class="nx">image</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">MAX_WIDTH</span> <span class="c1">// scale height</span>
+      <span class="kd">var</span> <span class="nx">canvas</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;canvas&quot;</span><span class="p">);</span>
+      <span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">image</span><span class="p">.</span><span class="nx">width</span><span class="p">;</span> <span class="c1">// scale canvas to match image</span>
+      <span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">image</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span>
+      <span class="kd">var</span> <span class="nx">ctx</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s2">&quot;2d&quot;</span><span class="p">);</span> <span class="c1">// get 2D renderig context</span>
+      <span class="nx">ctx</span><span class="p">.</span><span class="nx">drawImage</span><span class="p">(</span><span class="nx">image</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="nx">image</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span> <span class="nx">image</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span> <span class="c1">// render</span>
+      <span class="nx">targetImgElt</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">toDataURL</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">quality</span><span class="p">);</span>
+      <span class="nx">self</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;poster&#39;</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">toDataURL</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">quality</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="nx">image</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">sourceImg</span><span class="p">;</span> <span class="c1">//Get the source</span>
+  <span class="p">},</span>
+  <span class="nx">save</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-25" id="section-25">&#182;</a>
+</div>
+<p>A brand new model</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">isNew</span><span class="p">())</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span>
+                <span class="p">{</span><span class="nx">title</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#title&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span>
+                <span class="nx">released</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#released&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span>
+                <span class="nx">director</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#director&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span>
+                <span class="nx">starring</span><span class="o">:</span> <span class="p">[</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#starring&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">()],</span>
+                <span class="nx">rating</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#rating&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span>
+                <span class="nx">duration</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#duration&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span>
+                <span class="nx">genre</span><span class="o">:</span> <span class="p">[</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#genre&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">()],</span>
+                <span class="nx">synopsis</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#synopsis&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span>
+                <span class="nx">freshtTotal</span><span class="o">:</span> <span class="mf">0.0</span><span class="p">,</span>
+                <span class="nx">freshVotes</span><span class="o">:</span> <span class="mf">0.0</span><span class="p">,</span>
+                <span class="nx">trailer</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#trailer&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span>
+                <span class="nx">poster</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#detailsImage&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">src</span><span class="p">},</span> <span class="p">{</span>
+                        <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
+                            <span class="nx">splat</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">navigate</span><span class="p">(</span><span class="s1">&#39;#movies/&#39;</span><span class="o">+</span><span class="nx">resp</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="p">{</span><span class="nx">replace</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span> <span class="nx">trigger</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span>
+                            <span class="nx">splat</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">showNotice</span><span class="p">(</span><span class="s2">&quot;Movie added&quot;</span><span class="p">,</span> <span class="s1">&#39;alert-success&#39;</span><span class="p">);</span>
+                        <span class="p">},</span>  <span class="nx">error</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-26" id="section-26">&#182;</a>
+</div>
+<p>display the error response from the server</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+          <span class="nx">splat</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">showNotice</span><span class="p">(</span><span class="s2">&quot;Movie add failed&quot;</span><span class="p">,</span> <span class="s1">&#39;alert-danger&#39;</span><span class="p">);</span>
+          <span class="nx">splat</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">requestFailed</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+        <span class="p">}</span>
+            <span class="p">});</span>
+            <span class="p">}</span>
+        <span class="k">else</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-27" id="section-27">&#182;</a>
+</div>
+<p>Updating a model</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span>
+            <span class="p">{</span><span class="nx">title</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#title&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span>
+    <span class="nx">released</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#released&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span>
+    <span class="nx">director</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#director&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span>
+    <span class="nx">starring</span><span class="o">:</span> <span class="p">[</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#starring&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">()],</span>
+    <span class="nx">rating</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#rating&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span>
+    <span class="nx">duration</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#duration&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span>
+    <span class="nx">genre</span><span class="o">:</span> <span class="p">[</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#genre&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">()],</span>
+    <span class="nx">synopsis</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#synopsis&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span>
+    <span class="nx">freshtTotal</span><span class="o">:</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="nx">freshVotes</span><span class="o">:</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="nx">trailer</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#trailer&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">()},</span> <span class="p">{</span>
+                <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">splat</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">navigate</span><span class="p">(</span><span class="s1">&#39;#movies/&#39;</span><span class="o">+</span><span class="nx">resp</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="p">{</span><span class="nx">replace</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span> <span class="nx">trigger</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span>
+          <span class="nx">splat</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">showNotice</span><span class="p">(</span><span class="s2">&quot;Movie updated&quot;</span><span class="p">,</span> <span class="s1">&#39;alert-info&#39;</span><span class="p">);</span>
+                <span class="p">},</span>
+        <span class="nx">error</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">,</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-28" id="section-28">&#182;</a>
+</div>
+<p>display the error response from the server</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+          <span class="nx">splat</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">showNotice</span><span class="p">(</span><span class="s2">&quot;Movie update failed&quot;</span><span class="p">,</span> <span class="s1">&#39;alert-danger&#39;</span><span class="p">);</span>
+          <span class="nx">splat</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">requestFailed</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+
+        <span class="p">}</span>
+
+        <span class="p">});</span>
+  <span class="p">}},</span>
+  <span class="nx">destroy</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">destroy</span><span class="p">({</span>
+      <span class="nx">wait</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>  <span class="c1">// don&#39;t destroy client model until server responds</span>
+      <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">model</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">splat</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">navigate</span><span class="p">(</span><span class="s1">&#39;#movies&#39;</span><span class="p">,</span> <span class="p">{</span><span class="nx">replace</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span> <span class="nx">trigger</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span>
+          <span class="nx">splat</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">showNotice</span><span class="p">(</span><span class="s2">&quot;Movie deleted&quot;</span><span class="p">,</span> <span class="s1">&#39;alert-danger&#39;</span><span class="p">);</span>
+      <span class="p">},</span>
+      <span class="nx">error</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">model</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-29" id="section-29">&#182;</a>
+</div>
+<p>display the error response from the server</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+          <span class="nx">splat</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">requestFailed</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

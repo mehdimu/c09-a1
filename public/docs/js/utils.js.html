@@ -229,7 +229,85 @@ invoke callback function.</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
         <span class="nx">$</span><span class="p">.</span><span class="nx">when</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">deferreds</span><span class="p">).</span><span class="nx">done</span><span class="p">(</span><span class="nx">callback</span><span class="p">);</span>
-    <span class="p">}</span>
+    <span class="p">},</span>
+  <span class="nx">showNotice</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">msg</span><span class="p">,</span> <span class="nx">className</span><span class="p">){</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-11" id="section-11">&#182;</a>
+</div>
+<p>use jQuery to address input field by its
+selector attribute</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="kd">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.Success&#39;</span><span class="p">);</span>
+        <span class="nx">el</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+        <span class="nx">el</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">msg</span><span class="p">);</span>
+        <span class="nx">el</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">className</span><span class="p">);</span>
+    <span class="nx">el</span><span class="p">.</span><span class="nx">fadeOut</span><span class="p">(</span><span class="mi">5000</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+      <span class="nx">el</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">className</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">},</span>
+  <span class="nx">hideNotice</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-12" id="section-12">&#182;</a>
+</div>
+<p>use jQuery to address input field by its
+selector attribute</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.Success&#39;</span><span class="p">);</span>
+        <span class="nx">el</span><span class="p">.</span><span class="nx">stop</span><span class="p">();</span>
+    <span class="p">},</span>
+  <span class="nx">addValidationError</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">field</span><span class="p">,</span> <span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-13" id="section-13">&#182;</a>
+</div>
+<p>use jQuery to address input field by its
+name attribute</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">formgroup</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="o">+</span><span class="nx">field</span><span class="p">).</span><span class="nx">parent</span><span class="p">();</span>
+    <span class="nx">formgroup</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;has-error&#39;</span><span class="p">);</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.help-block&#39;</span><span class="p">,</span> <span class="nx">formgroup</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="nx">removeValidationError</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-14" id="section-14">&#182;</a>
+</div>
+<p>similar to above
+use jQuery to address input field by its
+name attribute</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">formgroup</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="o">+</span><span class="nx">field</span><span class="p">).</span><span class="nx">parent</span><span class="p">();</span>
+    <span class="nx">formgroup</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;has-error&#39;</span><span class="p">);</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.help-block&#39;</span><span class="p">,</span> <span class="nx">formgroup</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+
+  <span class="p">}</span>
+
 <span class="p">};</span>
 </pre></div>
         </td>
